@@ -35,4 +35,6 @@ typedef struct	s_triminos
 	s_pos	pos[3];
 }				t_triminos;
 
+void	ft_place(char *str);
+
 }
