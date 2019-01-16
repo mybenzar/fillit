@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/16 19:23:45 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/16 20:08:38 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	**ft_create_tab(char **tab, int col, int line)
 	return (tab);
 }
 
-int		ft_place(t_list *list, char **tab, int l, int c)
+int		ft_place(t_triminos *list, char **tab, int l, int c)
 {
 	char		letter;
 	int			i;
