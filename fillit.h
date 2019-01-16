@@ -6,12 +6,12 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/16 19:24:04 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/16 19:43:55 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
 # define __FILLIT_H
-# include "../Libft/libft.h"
+# include "libft.h"
 # define BUFF_SIZE 1048 
 # include <unistd.h>
 # include <sys/types.h>
