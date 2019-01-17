@@ -6,103 +6,124 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/17 15:13:16 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 18:12:42 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_create_tab(int l, int c)
+char	**ft_create_tab(int size)
 {
 	int		i;
-	int		j;
 	char	**tab;
+	char	*s1;
 
 	i = 0;
-	j = 0;
-	if (!(tab = (char**)malloc(sizeof(char*) * l)))
+	s1 = ft_strnew((int)size);
+	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))
 		return (NULL);
-	while (i <= l)
+	while (i < size)
+		s1[i++] = '.';
+	s1[i] = '\0';
+	i =  0;
+	while (i < size)
 	{
-		if (!(tab[i] = (char*)malloc(sizeof(char) * (c + 1))))
-			return (NULL);
-		while (j <= c + 1)
-			tab[i][j++] = '.';
-		tab[i][j] = '\0';
+		tab[i] = ft_strdup(s1);
 		i++;
 	}
 	return (tab);
 }
 
-void	ft_find(char **tab, int l, int c)
+void	ft_find(char **tab, int *l, int *c)
 {
-	while (tab[l][c] != '.' && tab[l][c] && tab[l])
+	int	i;
+	int j;
+	
+	i = *l;
+	j = *c;
+	while (tab[i][j] != '.' && tab[i][j] && tab[i])
 	{		
-		c++;
-		if (!tab[l][c])
-			l++;
+		j++;
+		if (!tab[i][j])
+			i++;
 	}
+	*l = i;
+	*c = j;
 }
 
-int		ft_place(t_triminos *list, char **tab, int l, int c)
+int		ft_place(t_triminos *list, char **tab, int l, int c, char *letter_ptr)
 {
-	char		letter;
-	int			i;
-	int			j;
-	int			k;
-	t_triminos	*tmp;
+	char	letter;
+	int		i;
+	int		j;
+	int		k;
+	t_triminos	tmp;
 	
-	letter = 65;
+	letter = *letter_ptr;
+
 	i = -1;
-	tmp = list;
-	ft_find(tab, l, c);
+	tmp = *list;
+	ft_find(tab, &l, &c);
 	while (++i <= 3)
 	{
-		j = c + tmp->pos[i].x;
-		k = l + tmp->pos[i].y;
+		j = c + tmp.pos[i].x;
+		k = l + tmp.pos[i].y;
 		if (tab[k][j] == '.' && tab[k][j])
 			tab[k][j] = letter;
+
 		else if (!tab[k][j])
-			ft_place(list, tab, l++, 0);
+			ft_place(list, tab, l++, 0, &letter);
 		else if (!tab[k])
-			ft_place(list, tab, 0, c++);
+			ft_place(list, tab, 0, c++, &letter);
 		else
 			return (0);
 	}
 	letter++;
+	*letter_ptr = letter;
 	return (1);
 }
 
-void	ft_browse(char **tab, t_triminos *list)
+void	ft_browse(char **tab, t_triminos *list, int size_tab)
 {
 	t_triminos	*tmp;
-	static 		c;
-	static		l;
-	int			nb_minos;
-	int			max_col;
-	int			max_line;
+	char		letter;
+	int 		c;
+	int			l;
 
 	c = 0;
 	l = 0;
 	tmp = list;
-	// la ligne suivante est elle encore necessaire ?
-	nb_minos = ft_list_size(tmp);
-	while (tmp->next)
+	letter = 'A';
+	while (tmp)
 	{
 		// cherche l et c tel que tab[l][c] est un emplacement vide :
-		ft_find(tab, l, c);
+		ft_find(tab, &l, &c);
+		ft_putnbr(l);
+		ft_putchar(',');
+		ft_putnbr(c);
+		ft_putchar('\n');
 		// s'il arrive a placer le minos, passe au minos suivant :
-		if (ft_place(tmp, tab, l, c))
+		if (ft_place(tmp, tab, l, c, &letter))
+		{
 			tmp = tmp->next;
+		}
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
 		else
 		{
 			tmp = tmp->next;
-			ft_browse(tab, tmp);
+			ft_putendl("hello");
+			//appeler ici la fonction qui remet le minos precedent a la fin de la chaine
+			ft_browse(tab, tmp, size_tab);
 		}
 		// pour faire toutes les combinaisons, il faut remettre a chaque fois le premier maillon de la chaine a la fin
 		// par exemple, si on commence par 2, il faut remettre 1 a la fin de la chaine
 	}
-			//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
-		//	if (col == max_col && line == max_line)
+	//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
+	// condition d'arret de la recursion
+	if (ft_list_size(list) == letter - 64)
+		return ;
+	free(tab);
+	tmp = list;
+	size_tab++;
+	ft_browse(ft_create_tab(size_tab), tmp, size_tab); 
 }

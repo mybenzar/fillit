@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/17 15:13:14 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 18:12:41 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,12 @@ int	main(int ac, char **av)
 	l = 0;
 	c = 0;
 	// creation de la map
-	tab = ft_create_tab(4, 4);
-	ft_place(tri_list, tab, l, c);
-	ft_display_tri_lst(tri_list);
-
-
+	tab = ft_create_tab(4);
+	printf("affichage du tableau vierge \n\n");
+	ft_display_tab(tab);
+	printf("\n\naffichage du tableau final \n\n");
+	ft_browse(tab, tri_list, 4);
+//	ft_display_tab(tab);
 
 	
 	return (0);
