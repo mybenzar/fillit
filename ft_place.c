@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/17 18:12:42 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 19:49:51 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	ft_find(char **tab, int *l, int *c)
 	}
 	*l = i;
 	*c = j;
+	//revoir
 }
 
 int		ft_place(t_triminos *list, char **tab, int l, int c, char *letter_ptr)
@@ -73,6 +74,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c, char *letter_ptr)
 
 		else if (!tab[k][j])
 			ft_place(list, tab, l++, 0, &letter);
+		//revoir ligne suivantem, pertinence?
 		else if (!tab[k])
 			ft_place(list, tab, 0, c++, &letter);
 		else
@@ -96,7 +98,7 @@ void	ft_browse(char **tab, t_triminos *list, int size_tab)
 	letter = 'A';
 	while (tmp)
 	{
-		// cherche l et c tel que tab[l][c] est un emplacement vide :
+		// cherche l et c tel que tab[l][c] est un emplacement vide // pertinence ici ?:
 		ft_find(tab, &l, &c);
 		ft_putnbr(l);
 		ft_putchar(',');
@@ -123,7 +125,10 @@ void	ft_browse(char **tab, t_triminos *list, int size_tab)
 	if (ft_list_size(list) == letter - 64)
 		return ;
 	free(tab);
-	tmp = list;
 	size_tab++;
-	ft_browse(ft_create_tab(size_tab), tmp, size_tab); 
+	ft_browse(ft_create_tab(size_tab), list, size_tab);
+
+
+	tab = ft_create_tab(size_tab);
+	ft_browse(tab, list, size_tab)
 }
