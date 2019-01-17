@@ -6,13 +6,11 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/16 20:08:38 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 12:28:53 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-// recoder realloc car elle n'est pas autorisee
 
 char	**ft_create_tab(char **tab, int col, int line)
 {
@@ -29,7 +27,7 @@ char	**ft_create_tab(char **tab, int col, int line)
 			return (NULL);
 		while (tab[i][j])
 			tab[i][j++] = '.';
-		tab[i][j] = '\n';
+		tab[i][j] = '\0';
 	}
 	return (tab);
 }
@@ -53,8 +51,8 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 */
 	while (++i <= 3)
 	{
-		j = c + list.content.pos[i].x;
-		k = l + list.content.pos[i].y;
+		j = c + list.pos[i].x;
+		k = l + list.pos[i].y;
 		if (tab[k][j] == '.' && tab[k][j])
 			tab[k][j] = letter;
 		else if (!tab[k][j])

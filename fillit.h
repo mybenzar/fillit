@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/16 19:43:55 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/17 12:28:53 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -17,9 +17,10 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 # include <fcntl.h>
+# include <stdlib.h>
 
 /*
-** la structure pour definir le contenu et l'id du minos est celle de la libft.h
+** modif myma : ajout de l'include de stdlib.h
 */ 
 
 /*
