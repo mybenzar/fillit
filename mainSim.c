@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/16 19:16:04 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:09:01 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int ac, char **av)
 	int		ret;
 	int		fd;
 	char	buf[BUFF_SIZE + 1];
+	char	**tab;
 	t_list	*list;
 	t_triminos	tri;
 	t_triminos	*tri_list;
@@ -56,6 +57,10 @@ int	main(int ac, char **av)
 	//NEW TRI LIST TESTING
 	printf("TEST TRI_LIST MAKING AND DISPLAY (UP AND LEFT ALREADY)\n\n");
 	tri_list = ft_t_list_to_tri_list(list);
+	ft_display_tri_lst(tri_list);
+	// creation de la map
+	tab = ft_create_tab(4, 4);
+	ft_browse(tab, tri_list);
 	ft_display_tri_lst(tri_list);
 
 

@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/17 12:28:53 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 12:34:58 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -20,7 +20,9 @@
 # include <stdlib.h>
 
 /*
-** modif myma : ajout de l'include de stdlib.h
+** modif myma : 
+**		ajout de l'include de stdlib.h
+**		ajout du proto ft_list_size.h
 */ 
 
 /*
@@ -53,6 +55,7 @@ t_triminos	*ft_lst_tri_new(t_triminos tri);
 void		ft_lst_tri_add(t_triminos **list_tri, t_triminos *new_tri);
 t_triminos	*ft_t_list_to_tri_list(t_list *list);
 void		ft_display_tri_lst(t_triminos *tri_list);
+int			ft_list_size(t_triminos *tri_list);
 //t_triminos	*ft_rev_tri_lst(t_triminos *list);
 
 #endif

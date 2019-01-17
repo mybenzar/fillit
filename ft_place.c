@@ -6,13 +6,13 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/17 12:28:53 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 13:09:02 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_create_tab(char **tab, int col, int line)
+char	**ft_create_tab(int col, int line)
 {
 	int i;
 	int j;
@@ -32,6 +32,16 @@ char	**ft_create_tab(char **tab, int col, int line)
 	return (tab);
 }
 
+void	ft_find(char **tab, int l, int c)
+{
+	while (tab[l][c] != '.' && tab[l][c] && tab[l])
+	{		
+		c++;
+		if (!tab[l][c])
+			l++;
+	}
+}
+
 int		ft_place(t_triminos *list, char **tab, int l, int c)
 {
 	char		letter;
@@ -41,14 +51,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	
 	letter = 65;
 	i = -1;
-/* mettre dans ft_browse et envoyer l et c?
-**	while (tab[l][c] != '.' && tab[l][c] && tab[l])
-**	{		
-**		c++;
-**		if (!tab[l][c])
-**			l++;
-**	}
-*/
+	ft_find(tab, l, c);
 	while (++i <= 3)
 	{
 		j = c + list.pos[i].x;
@@ -66,47 +69,36 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	return (1);
 }
 
-void	ft_browse(char **tab, t_list **list)
+void	ft_browse(char **tab, t_triminos *list)
 {
-	t_list	*tmp;
-	int		col;
-	int		line;
-	int		nb_minos;
-	int		max_col;
-	int		max_line;
+	t_triminos	*tmp;
+	int			c;
+	int			l;
+	int			nb_minos;
+	int			max_col;
+	int			max_line;
 
-	col = 0;
-	line = 0;
-	tmp = *list;
-	nb_minos = ft_list_size(*list);
+	c = 0;
+	l = 0;
+	tmp = list;
+	// la ligne suivante est elle encore necessaire ?
+	nb_minos = ft_list_size(tmp);
 	while (tmp->next)
 	{
-		
-	}
-
-
-	while (--nb_minos)
-	{
-		if (tab[line][col] == '.')
+		// cherche l et c tel que tab[l][c] est un emplacement vide :
+		ft_find(tab, l, c);
+		// s'il arrive a placer le minos, passe au minos suivant :
+		if (ft_place(tmp, tab, l, c))
+			tmp = tmp->next;
+		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
+		else
 		{
-			while (ft_place(tmp, &col, &line))
-				tmp = tmp->next;
-			while (!ft_place(tmp, &col, &line) && ((col + 1) % 4 != 0) && col <= max_col && line <= max_line)
-			{
-				if ((col + 1) % 4 != 0)
-				{
-					col++;
-					ft_place(tmp, &col, &line);
-				}
-				else if ((col + 1) % 4 == 0)
-				{
-					line++;
-					ft_place(tmp, &col, &line);
-				}
-				//n'arrive pas a le placer nulle part, donc doit passer a un autre minos
-			}
+			tmp = tmp->next;
+			ft_browse(tmp);
+		}
+		// pour faire toutes les combinaisons, il faut remettre a chaque fois le premier maillon de la chaine a la fin
+		// par exemple, si on commence par 2, il faut remettre 1 a la fin de la chaine
+	}
 			//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
 			if (col == max_col && line == max_line)
-		}
-	}
 }
