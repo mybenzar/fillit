@@ -6,28 +6,30 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/17 13:09:02 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:13:16 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char	**ft_create_tab(int col, int line)
+char	**ft_create_tab(int l, int c)
 {
-	int i;
-	int j;
+	int		i;
+	int		j;
+	char	**tab;
 
-	i = 1;
+	i = 0;
 	j = 0;
-	if (!(tab = (char**)malloc(sizeof(char*) * col)))
+	if (!(tab = (char**)malloc(sizeof(char*) * l)))
 		return (NULL);
-	while (i <= 4)
+	while (i <= l)
 	{
-		if (!(tab[i++] = (char*)malloc(sizeof(char) * (col + 1))))
+		if (!(tab[i] = (char*)malloc(sizeof(char) * (c + 1))))
 			return (NULL);
-		while (tab[i][j])
+		while (j <= c + 1)
 			tab[i][j++] = '.';
 		tab[i][j] = '\0';
+		i++;
 	}
 	return (tab);
 }
@@ -48,22 +50,24 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	int			i;
 	int			j;
 	int			k;
+	t_triminos	*tmp;
 	
 	letter = 65;
 	i = -1;
+	tmp = list;
 	ft_find(tab, l, c);
 	while (++i <= 3)
 	{
-		j = c + list.pos[i].x;
-		k = l + list.pos[i].y;
+		j = c + tmp->pos[i].x;
+		k = l + tmp->pos[i].y;
 		if (tab[k][j] == '.' && tab[k][j])
 			tab[k][j] = letter;
 		else if (!tab[k][j])
 			ft_place(list, tab, l++, 0);
 		else if (!tab[k])
-			ft_place(list, tab, 0; c++);
+			ft_place(list, tab, 0, c++);
 		else
-			return (0)
+			return (0);
 	}
 	letter++;
 	return (1);
@@ -72,8 +76,8 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 void	ft_browse(char **tab, t_triminos *list)
 {
 	t_triminos	*tmp;
-	int			c;
-	int			l;
+	static 		c;
+	static		l;
 	int			nb_minos;
 	int			max_col;
 	int			max_line;
@@ -94,11 +98,11 @@ void	ft_browse(char **tab, t_triminos *list)
 		else
 		{
 			tmp = tmp->next;
-			ft_browse(tmp);
+			ft_browse(tab, tmp);
 		}
 		// pour faire toutes les combinaisons, il faut remettre a chaque fois le premier maillon de la chaine a la fin
 		// par exemple, si on commence par 2, il faut remettre 1 a la fin de la chaine
 	}
 			//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
-			if (col == max_col && line == max_line)
+		//	if (col == max_col && line == max_line)
 }

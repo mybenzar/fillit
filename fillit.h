@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/17 12:34:58 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/17 15:13:15 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -23,7 +23,11 @@
 ** modif myma : 
 **		ajout de l'include de stdlib.h
 **		ajout du proto ft_list_size.h
-*/ 
+**		ajout du proto ft_browse
+**		ajout du proto ft_place
+**		ajout du proto ft_find
+**		ajout du proto ft_create_tab
+*/
 
 /*
 ** structure pour definir la position de chaque # dans les minos
@@ -56,6 +60,12 @@ void		ft_lst_tri_add(t_triminos **list_tri, t_triminos *new_tri);
 t_triminos	*ft_t_list_to_tri_list(t_list *list);
 void		ft_display_tri_lst(t_triminos *tri_list);
 int			ft_list_size(t_triminos *tri_list);
+char		**ft_create_tab(int l, int c);
+void		ft_browse(char **tab, t_triminos *list);
+int			ft_place(t_triminos *list, char **tab, int l, int c);
+void		ft_find(char **tab, int l, int c);
+
+
 //t_triminos	*ft_rev_tri_lst(t_triminos *list);
 
 #endif
