@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/18 17:37:47 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 17:45:12 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,28 +39,8 @@ int	main(int ac, char **av)
 	printf("ret = %d\n", ret);
 	buf[ret] = '\0';
 	printf("%s", buf);
-	test = ft_check(buf);
-	if (test == 1)
-		printf("Donnees valides !\n\n");
-	if (test == 0)
-	{
-		printf("Donnees incorrectes...\n");
-		return (-1);
-	}
-	if (test == 1)
-	{
-		list = ft_convert_to_t_list(buf);
-//		ft_lst_aff(list);
-	}
-//	tri = ft_tri_pos(list);
-//	tri = ft_left(tri);
-//	ft_display(tri);
-	
-	
-	//NEW TRI LIST TESTING
 	printf("TEST TRI_LIST MAKING AND DISPLAY (UP AND LEFT ALREADY)\n\n");
-	tri_list = ft_t_list_to_tri_list(list);
-	ft_display_tri_lst(tri_list);
+	tri_list = ft_check_and_convert(buf);
 
 	l = 0;
 	c = 0;

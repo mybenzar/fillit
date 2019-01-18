@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 17:37:41 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 17:43:50 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -53,6 +53,7 @@ typedef struct	s_triminos
 {
 	t_pos				pos[4];
 	struct s_triminos	*next;
+	char				letter;
 }				t_triminos;
 
 t_triminos	ft_tri_pos(t_list *list);
@@ -70,6 +71,12 @@ void		ft_find(char **tab, int *l, int *c);
 void		ft_display_tab(char **tab);
 void		ft_free_tab(char **tab);
 
+//UPDATE SIMON
+int			ft_check_diese_nb(t_list *list);
+int			ft_check_shape(t_triminos *tri_list);
+t_triminos	*ft_check_and_convert(char *str);
+void		ft_display_tab(char **tab);
+void		ft_assign_letter(t_triminos *tri_list);
 
 //t_triminos	*ft_rev_tri_lst(t_triminos *list);
 
