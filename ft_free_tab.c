@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_tab.c                                   :+:      :+:    :+:   */
+/*   ft_free_tab.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/17 15:04:04 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/18 13:51:29 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/01/18 12:17:16 by mybenzar          #+#    #+#             */
+/*   Updated: 2019/01/18 15:47:20 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_display_tab(char **tab)
+void	ft_free_tab(char **tab)
 {
 	int i;
 
 	i = 0;
 	while (tab[i])
-		ft_putendl(tab[i++]);
+	{
+		if (!tab[i])
+			return ;
+		free(tab[i]);
+		tab[i] = NULL;
+		i++;
+	}
 }

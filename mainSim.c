@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/17 19:49:53 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 17:37:47 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int ac, char **av)
 	char	**tab;
 	int		l;
 	int		c;
+	char	letter;
 	t_list	*list;
 	t_triminos	tri;
 	t_triminos	*tri_list;
@@ -63,13 +64,31 @@ int	main(int ac, char **av)
 
 	l = 0;
 	c = 0;
-	// creation de la map
+	letter = 'A';
+
+	//TEST FT CREATE TAB ET FT FREE TAB
 	tab = ft_create_tab(4);
-	printf("affichage du tableau vierge \n\n");
+	printf("*******************TEST FT_CREATE_TAB ET FT_FREE_TAB***************** \n\n");
 	ft_display_tab(tab);
-	printf("\n\naffichage du tableau final \n\n");
-	ft_browse(tab, tri_list, 4);
-//	ft_display_tab(tab);
+	printf("succes de ft_create_tab\n");
+	ft_free_tab(tab);
+	if (tab[0] == NULL && tab[1] == NULL && tab[2] == NULL && tab[3] == NULL)
+		printf("succes de ft_free_tab\n");
+	else
+		printf("echec de ft_free_tab\n");
+
+	//TEST FT PLACE
+	printf("\n\n*******************TEST FT_PLACE***************** \n\n");
+	tab = ft_create_tab(4);
+	ft_place(tri_list, tab, l, c, &letter);
+	ft_display_tab(tab);
+	ft_free_tab(tab);
+	printf("succes de ft_place pour 1 minos valide\n");
+	
+	//TEST FT BROWSE
+	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
+	ft_browse(tab, tri_list, 8);
+	ft_display_tab(tab);
 
 	
 	return (0);
