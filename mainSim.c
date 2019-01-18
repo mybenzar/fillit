@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/18 18:00:06 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:27:25 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	main(int ac, char **av)
 	//TEST FT PLACE
 	printf("\n\n*******************TEST FT_PLACE***************** \n\n");
 	tab = ft_create_tab(4);
-	ft_place(tri_list, tab, l, c, &letter);
+	ft_place(tri_list, tab, l, c);
 	ft_display_tab(tab);
 	ft_free_tab(tab);
 	printf("succes de ft_place pour 1 minos valide\n");

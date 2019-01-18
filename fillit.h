@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 17:57:43 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:27:26 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -54,7 +54,7 @@ void		ft_display_tri_lst(t_triminos *tri_list);
 int			ft_list_size(t_triminos *tri_list);
 char		**ft_create_tab(int size);
 char		**ft_browse(char **tab, t_triminos *list, int size_tab);
-int			ft_place(t_triminos *list, char **tab, int l, int c, char *letter_ptr);
+int			ft_place(t_triminos *list, char **tab, int l, int c);
 void		ft_find(char **tab, int *l, int *c);
 void		ft_display_tab(char **tab);
 void		ft_free_tab(char **tab);

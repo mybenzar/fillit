@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 17:37:45 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 19:27:13 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_find(char **tab, int *l, int *c)
 	*l = i;
 	*c = j;
 }
-//ajouter le pointeur sur liste pour la lettre
+
 int		ft_place(t_triminos *list, char **tab, int l, int c)
 {
 	int		i;
@@ -66,7 +66,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 		j = c + tmp.pos[i].x;
 		k = l + tmp.pos[i].y;
 		if (tab[k][j] == '.')
-			tab[k][j] = letter;
+			tab[k][j] = tmp.letter;
 
 		else if (!tab[k][j])
 			ft_place(list, tab, l++, 0);
@@ -85,9 +85,11 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	t_triminos	*tmp;
 	int 		c;
 	int			l;
+	int			tri_placed;
 
 	c = 0;
 	l = 0;
+	tri_placed = 0;
 	tmp = list;
 	tab = ft_create_tab(size_tab);
 	ft_putendl("\ncree le tableau");
@@ -97,6 +99,8 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		// s'il arrive a placer le minos, passe au minos suivant :
 		if (ft_place(tmp, tab, l, c))
 		{
+			tri_placed++;
+			ft_lst_insert(list, tri_placed, tmp->letter);
 			tmp = tmp->next;
 		}
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
@@ -111,7 +115,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	}
 	//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
 	// condition d'arret de la recursion
-	if (ft_list_size(list) == letter - 64)
+	if (ft_list_size(list) == tri_placed)
 		return (tab);
 	ft_free_tab(tab);
 	size_tab++;
