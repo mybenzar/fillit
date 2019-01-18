@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 17:43:50 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/18 17:57:43 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -18,19 +18,6 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <stdlib.h>
-
-/*
-** modif myma : 
-**		ajout de l'include de stdlib.h
-**		ajout du proto ft_list_size.h
-**		ajout du proto ft_browse
-**		ajout du proto ft_place
-**		ajout du proto ft_find
-**		ajout du proto ft_create_tab
-**		ajout du proto ft_display_tab
-**		ajout du proto de ft_free_tab
-**		ajout du proto de ft_lst_insert
-*/
 
 /*
 ** structure pour definir la position de chaque # dans les minos
@@ -56,6 +43,7 @@ typedef struct	s_triminos
 	char				letter;
 }				t_triminos;
 
+// FONCTIONS
 t_triminos	ft_tri_pos(t_list *list);
 t_triminos	ft_left(t_triminos tri);
 void		ft_display(t_triminos tri);
@@ -70,14 +58,19 @@ int			ft_place(t_triminos *list, char **tab, int l, int c, char *letter_ptr);
 void		ft_find(char **tab, int *l, int *c);
 void		ft_display_tab(char **tab);
 void		ft_free_tab(char **tab);
-
-//UPDATE SIMON
 int			ft_check_diese_nb(t_list *list);
 int			ft_check_shape(t_triminos *tri_list);
 t_triminos	*ft_check_and_convert(char *str);
 void		ft_display_tab(char **tab);
 void		ft_assign_letter(t_triminos *tri_list);
 
-//t_triminos	*ft_rev_tri_lst(t_triminos *list);
+// MYMA UPDATES
+
+
+
+
+// SIMON UPDATE
+
+
 
 #endif
