@@ -12,4 +12,4 @@ SRC_SIM	= ft_lst_insert.c
 
 
 all :
-	gcc mainSim.c -L. -lft $(SOURCES) $(SRC_MYM) $(SRC_SIM)
+	gcc -g mainSim.c -L. -lft $(SOURCES) $(SRC_MYM) $(SRC_SIM)

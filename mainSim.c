@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/21 15:06:03 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/21 18:35:49 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int ac, char **av)
 	
 	//TEST FT BROWSE
 	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
-	ft_browse(tab, tri_list, 8);
+	tab = ft_browse(tab, tri_list, 6);
 	ft_display_tab(tab);
 
 	

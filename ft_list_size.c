@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 19:51:35 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/16 20:04:50 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:58:35 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,17 @@
 
 int	ft_list_size(t_triminos *tri_list)
 {
-	int i;
+	int			i;
+	t_triminos	*tmp;
 
-	i = 1;
-	while (tri_list->next)
+	i = 0;
+	if (!tri_list)
+		return (0);
+	tmp = tri_list;
+	while (tmp)
 	{
 		i++;
-		tri_list = tri_list->next;
+		tmp = tmp->next;
 	}
 	return (i);
 }
