@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 19:39:21 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/21 15:06:02 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,9 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		if (ft_place(tmp, tab, l, c))
 		{
 			tri_placed++;
+			ft_putnbr(tri_placed);
 			ft_lst_insert(list, tri_placed, tmp->letter);
+			ft_putendl("Hello");
 			tmp = tmp->next;
 		}
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
