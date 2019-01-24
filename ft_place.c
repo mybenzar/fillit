@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/24 17:35:28 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/24 20:35:17 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,13 +49,12 @@ void	ft_find(char **tab, int *l, int *c)
 	*c = j;
 }
 
-int		ft_place(t_triminos *list, char **tab, int l, int c)
+int		ft_test(t_triminos *list, char **tab, int l, int c)
 {
-	int		i;
-	int		j;
-	int		k;
-	t_triminos	*tmp;
-	
+	int i;
+	int j;
+	int k;
+
 	i = -1;
 	tmp = list;
 	ft_find(tab, &l, &c);
@@ -64,9 +63,56 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 		j = c + tmp->pos[i].x;
 		k = l + tmp->pos[i].y;
 		if (tab[k][j] == '.')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+	
+}
+
+void	ft_del(t_triminos *list, char **tab)
+{
+	int 		l;
+	int 		c;
+	t_triminos	*tmp;
+
+	while (tab[l])
+	{
+		while (tab[l][c])
+		{
+			if (tab[l][c] == tmp->letter)
+				tab[l][c] == '.';
+			c++;
+		}
+		l++;
+	}
+}
+
+int		ft_place(t_triminos *list, char **tab, int l, int c)
+{
+	int			i;
+	int			j;
+	int			k;
+	t_triminos	*tmp;
+	
+	i = -1;
+	tmp = list;
+	if (ft_test(tmp, tab, l, c))
+	{
+		while (++i <= 3)
+		{
+			j = c + tmp->pos[i].x;
+			k = l + tmp->pos[i].y;
 			tab[k][j] = tmp->letter;
-		//n'a pas reussi a placer le minos donc renvoie 0
-		else if (tab[k][j] == '\0')
+		}
+	}
+	else 
+	{
+		ft_del(tmp, tab);
+		ft_place(tmp, tab, l++, 0);
+		
+		/*else if (tab[k][j] == '\0')
 		{
 			i = -1;
 			while (++i <= 3)
@@ -78,12 +124,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 					tab[k][j] = '.';
 			}
 			ft_place(tmp, tab, l++, 0);
-		}
-			//ft_place(list, tab, l++, 0);
-		// probleme de ft_place, c'est de gerer les cas ou il n'arrive pas a placer le dernier #, il faut enlever ceux qu'il a places av
-	//	else if (!tab[k])
-	//		ft_place(list, tab, 0, c++);
-		else
+		}*/
 			return (0);
 	}
 	return (1);
@@ -95,6 +136,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	int 		c;
 	int			l;
 	int			tri_placed;
+	int i;
 
 	c = 0;
 	l = 0;
@@ -104,40 +146,36 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	while (ft_list_size(list) != tri_placed)
 	{
 		// s'il arrive a placer le minos, passe au minos suivant :
-		
-		printf("l = %i, c = %i\n", l, c);
 		if (ft_place(tmp, tab, l, c))
 		{
 			tri_placed++;
-			ft_putnbr(tri_placed);
-			tmp = ft_lst_insert(tmp, tri_placed, tmp->letter);
 			tmp = tmp->next;
-			ft_display_tab(tab);
 		}
-	//	else if (ft_place(tmp, tab, l, c) == -1)
-	//		ft_place(tmp, tab, l++, 0);
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
 		else
 		{
-			tmp = tmp->next;
-			ft_putendl("hello");
-			//appeler ici la fonction qui remet le minos precedent a la fin de la chaine
-			ft_browse(tab, tmp, size_tab);
+			if (tmp->next)
+			{
+				tmp = tmp->next;
+				ft_lst_insert(list, tri_placed, tmp->letter);	
+			}
+			//si on a echoue avec toutes les combinaisons commencant par une lettre :
+			else
+			{
+				list = ft_sort_list(list);
+				i++;
+				ft_lst_insert(list, 0, 65 + i)
+			}
 		}
-		// pour faire toutes les combinaisons, il faut remettre a chaque fois le premier maillon de la chaine a la fin
-		// par exemple, si on commence par 2, il faut remettre 1 a la fin de la chaine
+		// condition d'arret de la recursion :
 		if (ft_list_size(list) == tri_placed)
 			return (tab);
 	}
-	//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
-	// condition d'arret de la recursion
-
-	ft_putendl("hello");
+	ft_putendl("tableau trop petit \n");
 	ft_free_tab(tab);
 	size_tab++;
-
-	ft_browse(tab, list, size_tab);
-	ft_putendl("error it shoudlnt reach this function");
-	return (NULL);
+	list = ft_sort_list(list);
+	tab = ft_browse(tab, list, size_tab);
+	return (tab);
 }
 
