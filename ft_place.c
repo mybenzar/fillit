@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/21 18:35:48 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/24 17:35:28 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,29 +54,30 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	int		i;
 	int		j;
 	int		k;
-	t_triminos	tmp;
+	t_triminos	*tmp;
 	
 	i = -1;
-	tmp = *list;
+	tmp = list;
 	ft_find(tab, &l, &c);
 	while (++i <= 3)
 	{
-		j = c + tmp.pos[i].x;
-		k = l + tmp.pos[i].y;
+		j = c + tmp->pos[i].x;
+		k = l + tmp->pos[i].y;
 		if (tab[k][j] == '.')
-			tab[k][j] = tmp.letter;
+			tab[k][j] = tmp->letter;
 		//n'a pas reussi a placer le minos donc renvoie 0
 		else if (tab[k][j] == '\0')
 		{
 			i = -1;
 			while (++i <= 3)
 			{
-				j = c + tmp.pos[i].x;
-				k = l + tmp.pos[i].y;
-				while (tab[k][j] == tmp.letter)
+				j = c + tmp->pos[i].x;
+				k = l + tmp->pos[i].y;
+		//		printf("k = %c, j = %c\n", k, j);
+				if (tab[k][j] == tmp->letter)
 					tab[k][j] = '.';
 			}
-			ft_place(&tmp, tab, l++, 0);
+			ft_place(tmp, tab, l++, 0);
 		}
 			//ft_place(list, tab, l++, 0);
 		// probleme de ft_place, c'est de gerer les cas ou il n'arrive pas a placer le dernier #, il faut enlever ceux qu'il a places av
@@ -103,10 +104,13 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	while (ft_list_size(list) != tri_placed)
 	{
 		// s'il arrive a placer le minos, passe au minos suivant :
+		
+		printf("l = %i, c = %i\n", l, c);
 		if (ft_place(tmp, tab, l, c))
 		{
 			tri_placed++;
-	//		ft_lst_insert(list, tri_placed, tmp->letter);
+			ft_putnbr(tri_placed);
+			tmp = ft_lst_insert(tmp, tri_placed, tmp->letter);
 			tmp = tmp->next;
 			ft_display_tab(tab);
 		}
@@ -116,6 +120,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		else
 		{
 			tmp = tmp->next;
+			ft_putendl("hello");
 			//appeler ici la fonction qui remet le minos precedent a la fin de la chaine
 			ft_browse(tab, tmp, size_tab);
 		}
