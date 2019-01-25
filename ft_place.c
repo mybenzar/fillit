@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/25 15:42:01 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/25 16:11:24 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int		ft_test(t_triminos *list, char **tab, int l, int c)
 	int 		k;
 	t_triminos	*tmp;
 
+
 	tmp = list;
 	while (tab[l][c])
 	{
@@ -74,6 +75,7 @@ int		ft_test(t_triminos *list, char **tab, int l, int c)
 				c++;
 		}
 	}		
+	ft_putendl("yo");
 	return (1);
 }
 
@@ -111,14 +113,17 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 			k = l + tmp->pos[i].y;
 			tab[k][j] = tmp->letter;
 		}
-		return (1);
 	}
 	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && tab[l + 1])
-		ft_place(tmp, tab, l++, 0);
+	{
+		if (ft_place(tmp, tab, l++, 0))
+			return (1);
+	}
 	// si le test a echoue pour la ligne 'l' mais qu'il n'existe pas de ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && !tab[l + 1])
 		return (0);
+	return (1);
 }
 
 char	**ft_browse(char **tab, t_triminos *list, int size_tab)
@@ -132,6 +137,8 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	tri_placed = 0;
 	tmp = list;
 	tab = ft_create_tab(size_tab);
+	ft_putendl("tableau cree");
+	printf("taille du tableau = %i", size_tab);
 	while (ft_list_size(list) != tri_placed)
 	{
 		c = 0;
@@ -141,6 +148,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		{
 			tri_placed++;
 			tmp = tmp->next;
+			ft_display_tab(tab);
 		}
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
 		else
@@ -154,7 +162,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			else
 			{
 				ft_del(64 + tri_placed, tab);
-				list = ft_sort_list(list);
+				list = ft_lst_sort(list);
 				i++;
 				ft_lst_insert(list, 0, 65 + i);
 			}
@@ -166,7 +174,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	ft_putendl("tableau trop petit \n");
 	ft_free_tab(tab);
 	size_tab++;
-	list = ft_sort_list(list);
+	list = ft_lst_sort(list);
 	tab = ft_browse(tab, list, size_tab);
 	return (tab);
 }
