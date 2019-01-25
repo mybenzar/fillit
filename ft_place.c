@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/25 16:11:24 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/25 17:11:20 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,19 @@ int		ft_test(t_triminos *list, char **tab, int l, int c)
 			j = c + tmp->pos[i].x;
 			k = l + tmp->pos[i].y;
 			if (tab[k][j] == '.')
+			{
 				i++;
+				ft_putnbr(i);
+			}
 			else if (tab[k][j] =='\0')
 				return (0);
 			else
+			{
+				i = 0;
 				c++;
+			}
 		}
-	}		
+	}
 	ft_putendl("yo");
 	return (1);
 }
@@ -96,6 +102,8 @@ void	ft_del(char letter, char **tab)
 	}
 }
 
+
+
 int		ft_place(t_triminos *list, char **tab, int l, int c)
 {
 	int			i;
@@ -105,6 +113,8 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	
 	i = -1;
 	tmp = list;
+	if (ft_place(list, tab, l, c))
+		return (1);
 	if (ft_test(tmp, tab, l, c))
 	{
 		while (++i <= 3)
@@ -113,18 +123,17 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 			k = l + tmp->pos[i].y;
 			tab[k][j] = tmp->letter;
 		}
+		return (1);
 	}
 	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && tab[l + 1])
-	{
-		if (ft_place(tmp, tab, l++, 0))
-			return (1);
-	}
+		ft_place(tmp, tab, l + 1, 0);
 	// si le test a echoue pour la ligne 'l' mais qu'il n'existe pas de ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && !tab[l + 1])
 		return (0);
-	return (1);
 }
+
+
 
 char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 {
@@ -138,7 +147,6 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	tmp = list;
 	tab = ft_create_tab(size_tab);
 	ft_putendl("tableau cree");
-	printf("taille du tableau = %i", size_tab);
 	while (ft_list_size(list) != tri_placed)
 	{
 		c = 0;
