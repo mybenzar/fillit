@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/25 16:45:37 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 15:53:18 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,40 @@ int	main(int ac, char **av)
 	else
 		printf("echec de ft_free_tab\n");
 
+	//TEST FT TEST
+	printf("\n\n*******************TEST FT_TEST***************** \n\n");
+	tab = ft_create_tab(4);
+	tab[0][0] = 'A';
+	tab[1][0] = 'A';
+	tab[2][0] = 'A';
+	tab[3][0] = 'A';
+	ft_display_tab(tab);
+	if (ft_test(tri_list, tab, 0, 1) == 1)
+		printf("succes de ft_test pour 1 mino valide\n");
+	else
+		printf("echec de ft_test");
+	if (ft_test(tri_list->next, tab, 0, 0) == 0)
+		printf("succes de ft_test pour 1 mino valide la ou il n'y a pas de place\n");
+	else
+		printf("echec de ft_test\n");
+	ft_free_tab(tab);
+
+	//TEST FT DEL
+	printf("\n\n*******************TEST FT_DEL***************** \n\n");
+	tab = ft_create_tab(4);
+	tab[0][0] = 'A';
+	tab[1][0] = 'A';
+	tab[2][0] = 'A';
+	tab[3][0] = 'A';
+	ft_display_tab(tab);
+	printf("suppression du mino A\n");
+	ft_del(letter, tab);
+	ft_display_tab(tab);
+	if (tab[0][0] == '.' && tab[1][0] == '.' && tab[2][0] == '.' && tab[3][0] == '.')
+		printf("succes de ft_del\n");
+	else
+		printf("echec de ft_del\n");
+
 	//TEST FT PLACE
 	printf("\n\n*******************TEST FT_PLACE***************** \n\n");
 	tab = ft_create_tab(4);
@@ -67,9 +101,8 @@ int	main(int ac, char **av)
 	
 	//TEST FT BROWSE
 	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
-	tab = ft_browse(tab, tri_list, 8);
+	tab = ft_browse(tab, tri_list, 4);
 	ft_display_tab(tab);
-	
 	
 	return (0);
 }

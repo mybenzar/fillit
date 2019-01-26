@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/25 17:11:20 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 15:53:17 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,40 +59,35 @@ int		ft_test(t_triminos *list, char **tab, int l, int c)
 
 
 	tmp = list;
-	while (tab[l][c])
+	ft_find(tab, &l, &c);
+	i = 0;
+	while (i <= 3 && tab[l][c])
 	{
-		ft_find(tab, &l, &c);
-		i = 0;
-		while (i <= 3)
+		j = c + tmp->pos[i].x;
+		k = l + tmp->pos[i].y;
+		if (tab[k][j] == '.')
+			i++;
+		else if (tab[k][j] =='\0')
+			return (0);
+		else
 		{
-			j = c + tmp->pos[i].x;
-			k = l + tmp->pos[i].y;
-			if (tab[k][j] == '.')
-			{
-				i++;
-				ft_putnbr(i);
-			}
-			else if (tab[k][j] =='\0')
-				return (0);
-			else
-			{
-				i = 0;
-				c++;
-			}
+			i = 0;
+			c++;
 		}
 	}
-	ft_putendl("yo");
 	return (1);
 }
 
-void	ft_del(char letter, char **tab)
+void	ft_del(int letter, char **tab)
 {
 	int 		l;
 	int 		c;
 
-	while (tab[l])
+	l = 0;
+	while (tab[l] != '\0')
 	{
-		while (tab[l][c])
+		c = 0;
+		while (tab[l][c] != '\0')
 		{
 			if (tab[l][c] == letter)
 				tab[l][c] = '.';
@@ -101,8 +96,6 @@ void	ft_del(char letter, char **tab)
 		l++;
 	}
 }
-
-
 
 int		ft_place(t_triminos *list, char **tab, int l, int c)
 {
@@ -113,8 +106,6 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	
 	i = -1;
 	tmp = list;
-	if (ft_place(list, tab, l, c))
-		return (1);
 	if (ft_test(tmp, tab, l, c))
 	{
 		while (++i <= 3)
@@ -123,7 +114,6 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 			k = l + tmp->pos[i].y;
 			tab[k][j] = tmp->letter;
 		}
-		return (1);
 	}
 	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && tab[l + 1])
@@ -131,6 +121,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	// si le test a echoue pour la ligne 'l' mais qu'il n'existe pas de ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && !tab[l + 1])
 		return (0);
+	return (1);
 }
 
 
@@ -155,6 +146,8 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		if (ft_place(tmp, tab, l, c))
 		{
 			tri_placed++;
+			ft_putnbr(tri_placed);
+			ft_putchar('\n');
 			tmp = tmp->next;
 			ft_display_tab(tab);
 		}

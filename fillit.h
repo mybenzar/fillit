@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/25 17:11:23 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 15:50:20 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -66,7 +66,8 @@ void		ft_assign_letter(t_triminos *tri_list);
 
 // MYMA UPDATES
 
-
+int			ft_test(t_triminos *list, char **tab, int l, int c);
+void		ft_del(int letter, char **tab);
 
 
 // SIMON UPDATE
