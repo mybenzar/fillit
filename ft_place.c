@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/26 16:45:05 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:47:05 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,7 +149,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		c = 0;
 		l = 0;
 		// s'il arrive a placer le minos, passe au minos suivant :
-		printf("ft_place renvoie = %i pour le mino %c \n", ft_place(tmp, tab, l, c), tmp->letter);
+		//printf("ft_place renvoie = %i pour le mino %c \n", ft_place(tmp, tab, l, c), tmp->letter);
 		if (ft_place(tmp, tab, l, c))
 		{
 			tri_placed++;
