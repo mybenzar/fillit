@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/26 15:53:18 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:45:05 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,13 @@ int	main(int ac, char **av)
 	tab = ft_create_tab(4);
 	ft_place(tri_list, tab, l, c);
 	ft_display_tab(tab);
-	ft_free_tab(tab);
 	printf("succes de ft_place pour 1 minos valide\n");
+	if (!ft_place(tri_list->next, tab, 0, 0))
+		printf("succes de ft_place pour 1 minos qui ne rentre pas\n");
+	else
+		printf("echec de ft_place pou 1 minos qui ne rentre pas");
+	ft_display_tab(tab);
+	ft_free_tab(tab);
 	
 	//TEST FT BROWSE
 	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");

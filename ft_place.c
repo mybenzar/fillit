@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/26 15:53:17 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 16:45:05 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,10 +84,10 @@ void	ft_del(int letter, char **tab)
 	int 		c;
 
 	l = 0;
-	while (tab[l] != '\0')
+	while (tab[l])
 	{
 		c = 0;
-		while (tab[l][c] != '\0')
+		while (tab[l][c])
 		{
 			if (tab[l][c] == letter)
 				tab[l][c] = '.';
@@ -114,14 +114,20 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 			k = l + tmp->pos[i].y;
 			tab[k][j] = tmp->letter;
 		}
+		return (1);
 	}
-	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
-	else if (!ft_test(tmp, tab, l, c) && tab[l + 1])
-		ft_place(tmp, tab, l + 1, 0);
 	// si le test a echoue pour la ligne 'l' mais qu'il n'existe pas de ligne suivante
 	else if (!ft_test(tmp, tab, l, c) && !tab[l + 1])
 		return (0);
-	return (1);
+	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
+	else if (!ft_test(tmp, tab, l, c) && tab[l + 1])
+	{
+		if (ft_place(tmp, tab, l + 1, 0))
+			return (1);
+		else
+			return (0);
+	}
+	return (0);
 }
 
 
@@ -143,11 +149,10 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		c = 0;
 		l = 0;
 		// s'il arrive a placer le minos, passe au minos suivant :
+		printf("ft_place renvoie = %i pour le mino %c \n", ft_place(tmp, tab, l, c), tmp->letter);
 		if (ft_place(tmp, tab, l, c))
 		{
 			tri_placed++;
-			ft_putnbr(tri_placed);
-			ft_putchar('\n');
 			tmp = tmp->next;
 			ft_display_tab(tab);
 		}
@@ -166,6 +171,8 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 				list = ft_lst_sort(list);
 				i++;
 				ft_lst_insert(list, 0, 65 + i);
+				ft_putnbr(i);
+				ft_putchar('\n');
 			}
 		}
 		// condition d'arret de la recursion :
