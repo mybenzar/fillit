@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/26 16:47:05 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/26 17:28:57 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,22 @@ void	ft_find(char **tab, int *l, int *c)
 }
 
 // ft_test va chercher sur toute la ligne s'il peut placer le mino
-int		ft_test(t_triminos *list, char **tab, int l, int c)
+int		ft_test(t_triminos *list, char **tab, int l, int *c)
 {
 	int 		i;
 	int 		j;
 	int 		k;
+	int			col;
 	t_triminos	*tmp;
 
 
 	tmp = list;
-	ft_find(tab, &l, &c);
+	col = 0;
+	ft_find(tab, &l, c);
 	i = 0;
-	while (i <= 3 && tab[l][c])
+	while (i <= 3 && tab[l])
 	{
-		j = c + tmp->pos[i].x;
+		j = col + tmp->pos[i].x;
 		k = l + tmp->pos[i].y;
 		if (tab[k][j] == '.')
 			i++;
@@ -72,9 +74,10 @@ int		ft_test(t_triminos *list, char **tab, int l, int c)
 		else
 		{
 			i = 0;
-			c++;
+			col++;
 		}
 	}
+	*c = col;
 	return (1);
 }
 
@@ -106,7 +109,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	
 	i = -1;
 	tmp = list;
-	if (ft_test(tmp, tab, l, c))
+	if (ft_test(tmp, tab, l, &c))
 	{
 		while (++i <= 3)
 		{
@@ -117,10 +120,10 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 		return (1);
 	}
 	// si le test a echoue pour la ligne 'l' mais qu'il n'existe pas de ligne suivante
-	else if (!ft_test(tmp, tab, l, c) && !tab[l + 1])
+	else if (!ft_test(tmp, tab, l, &c) && !tab[l + 1])
 		return (0);
 	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
-	else if (!ft_test(tmp, tab, l, c) && tab[l + 1])
+	else if (!ft_test(tmp, tab, l, &c) && tab[l + 1])
 	{
 		if (ft_place(tmp, tab, l + 1, 0))
 			return (1);
@@ -144,6 +147,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	tmp = list;
 	tab = ft_create_tab(size_tab);
 	ft_putendl("tableau cree");
+	i = 0;
 	while (ft_list_size(list) != tri_placed)
 	{
 		c = 0;
@@ -162,17 +166,18 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			if (tmp->next)
 			{
 				tmp = tmp->next;
-				ft_lst_insert(list, tri_placed, tmp->letter);	
+				ft_lst_insert(list, tri_placed, tmp->letter);
+				ft_putendl("rentre dans la boucle tmp->next");
 			}
 			//si on a echoue avec toutes les combinaisons commencant par une lettre :
 			else
 			{
+				ft_putendl("rentre dans le dernier else");
 				ft_del(64 + tri_placed, tab);
 				list = ft_lst_sort(list);
 				i++;
+				tri_placed--;
 				ft_lst_insert(list, 0, 65 + i);
-				ft_putnbr(i);
-				ft_putchar('\n');
 			}
 		}
 		// condition d'arret de la recursion :
