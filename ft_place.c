@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/28 18:48:15 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/28 19:54:41 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ void	ft_find(char **tab, int *l, int *c)
 	{
 		j++;
 		if (tab[i][j] == '\0')
+		{
+			j = 0;
 			i++;
+		}
 	}
 	*l = i;
 	*c = j;
@@ -62,15 +65,15 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 
 	tmp = list;
 	col = 0;
-	printf("l = %p", l);
+//	printf("l = %p", l);
 	line = *l;
-	ft_find(tab, &line, c);
-//	printf("ft_find dans ft_test renvoie l = %di\n", l); 
+	ft_find(tab, l, c);
+	printf("ft_find dans ft_test renvoie line = %d\n", line); 
 	i = 0;
 	while (i <= 3)
 	{
 		j = col + tmp->pos[i].x;
-		k = line + tmp->pos[i].y;
+		k = *l + tmp->pos[i].y;
 	
 //		printf("k = %d, j = %d\n", k, j);
 		if (tab[k] == 0 || tab[k][j] == '\0')
@@ -85,7 +88,7 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	}
 	*c = col;
 	*l = line;
-//	printf("Dernier point teste valide : [%i, %i]\n", k, j);
+	printf("Dernier point teste valide : [%i, %i]\n", col, line);
 	return (1);
 }
 
@@ -124,7 +127,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 		{
 			j = c + tmp->pos[i].x;
 			k = l + tmp->pos[i].y;
-	//		printf("k = %d, j = %d\n", k, j);
+			printf("k = %d, j = %d\n", k, j);
 			tab[k][j] = tmp->letter;
 		}
 		return (1);
@@ -135,7 +138,7 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 	// si le test a echoue pour la ligne 'l' et que la  ligne suivante existe, le placer a la ligne suivante
 	else if (!ft_test(tmp, tab, &l, &c) && tab[l + 1])
 	{
-		if (ft_place(tmp, tab, l + 1, 0))
+		if (ft_place(tmp, tab, ++l, 0))
 			return (1);
 		else
 			return (0);

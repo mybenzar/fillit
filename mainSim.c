@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/28 18:31:40 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/28 19:54:43 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int	main(int ac, char **av)
 	tab[0][2] = 'A';
 	tab[0][3] = 'A';
 	ft_display_tab(tab);
-	if (ft_test(tri_list, tab, 0, &d) == 1)
+	if (ft_test(tri_list, tab, &l, &d) == 1)
 		printf("succes de ft_test pour 1 mino valide\n");
 	else
 		printf("echec de ft_test");
-	if (ft_test(tri_list->next, tab, 0, &c) == 1)
+	if (ft_test(tri_list->next, tab, &l, &c) == 1)
 		printf("succes de ft_test pour 1 mino valide la ou il n'y a pas de place\n");
 	else
 		printf("echec de ft_test\n");
