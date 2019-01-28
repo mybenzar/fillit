@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/26 17:01:08 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/28 18:48:16 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -66,7 +66,7 @@ void		ft_assign_letter(t_triminos *tri_list);
 
 // MYMA UPDATES
 
-int			ft_test(t_triminos *list, char **tab, int l, int *c);
+int			ft_test(t_triminos *list, char **tab, int *l, int *c);
 void		ft_del(int letter, char **tab);
 
 
@@ -74,5 +74,6 @@ void		ft_del(int letter, char **tab);
 
 t_triminos	*ft_lst_insert(t_triminos *tri_list, int placed, char letter);
 t_triminos	*ft_lst_sort(t_triminos *tri_list);
+void		ft_display_tri_lst(t_triminos *tri_list);
 
 #endif

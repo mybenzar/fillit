@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display.c                                       :+:      :+:    :+:   */
+/*   ft_lst_tri_aff.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 16:30:36 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/28 17:37:39 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/01/28 17:33:51 by mybenzar          #+#    #+#             */
+/*   Updated: 2019/01/28 17:37:01 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_display(t_triminos tri)
+void	ft_lst_tri_aff(t_triminos *tri_list)
 {
-	char	str_tri[20];
-	int		diese;
-
-	diese = 0;
-	ft_strncpy(str_tri, "....\n....\n....\n....", 19);
-	while (diese < 4)
+	ft_display(tri_list);
+	while (tri_list->next)
 	{
-		str_tri[tri.pos[diese].x + (tri.pos[diese].y * 5)] = '#';
-		diese++;
+		tri_list = tri_list->next;
+		ft_display(tri_list);
 	}
-	str_tri[19] = '\0';
-//	ft_putstr("ft_display test after ft_left : \n\n");
-	ft_putstr(str_tri);
-	ft_putstr("\n\n");
 }

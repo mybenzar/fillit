@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/26 17:28:58 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/28 18:31:40 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,15 +63,15 @@ int	main(int ac, char **av)
 	printf("\n\n*******************TEST FT_TEST***************** \n\n");
 	tab = ft_create_tab(4);
 	tab[0][0] = 'A';
-	tab[1][0] = 'A';
-	tab[2][0] = 'A';
-	tab[3][0] = 'A';
+	tab[0][1] = 'A';
+	tab[0][2] = 'A';
+	tab[0][3] = 'A';
 	ft_display_tab(tab);
 	if (ft_test(tri_list, tab, 0, &d) == 1)
 		printf("succes de ft_test pour 1 mino valide\n");
 	else
 		printf("echec de ft_test");
-	if (ft_test(tri_list->next, tab, 0, &c) == 0)
+	if (ft_test(tri_list->next, tab, 0, &c) == 1)
 		printf("succes de ft_test pour 1 mino valide la ou il n'y a pas de place\n");
 	else
 		printf("echec de ft_test\n");
@@ -81,9 +81,9 @@ int	main(int ac, char **av)
 	printf("\n\n*******************TEST FT_DEL***************** \n\n");
 	tab = ft_create_tab(4);
 	tab[0][0] = 'A';
-	tab[1][0] = 'A';
-	tab[2][0] = 'A';
-	tab[3][0] = 'A';
+	tab[0][1] = 'A';
+	tab[0][2] = 'A';
+	tab[0][3] = 'A';
 	ft_display_tab(tab);
 	printf("suppression du mino A\n");
 	ft_del(letter, tab);
@@ -99,7 +99,7 @@ int	main(int ac, char **av)
 	ft_place(tri_list, tab, l, c);
 	ft_display_tab(tab);
 	printf("succes de ft_place pour 1 minos valide\n");
-	if (!ft_place(tri_list->next, tab, 0, 0))
+	if (!ft_place(tri_list->next, tab, 1, 0))
 		printf("succes de ft_place pour 1 minos qui ne rentre pas\n");
 	else
 		printf("echec de ft_place pou 1 minos qui ne rentre pas");
