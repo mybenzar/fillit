@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/29 15:12:37 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/29 17:53:46 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	ft_find(char **tab, int *l, int *c)
 	}
 	*l = i;
 	*c = j;
-	printf("fd find valide pour [%i, %i]\n", j, i);
+//	printf("fd find valide pour [%i, %i]\n", j, i);
 }
 
 // ft_test va chercher sur toute la ligne s'il peut placer le mino
@@ -62,24 +62,24 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	int 		k;
 	int			col;
 	t_triminos	*tmp;
-	int			line;
+//	int			line;
 
 	tmp = list;
 	col = 0;
 //	printf("l = %p", l);
-	line = *l;
+//	line = *l;
 
 /////////////  CI DESSOUS EST MORT LE PROBLEME DU CCC QUI MANGE LE BB !!!!! 
 /////////////	avant : ft_find(tab, l, c);
 
-	ft_find(tab, &line, c);
+	ft_find(tab, l, c);
 //	printf("ft_find dans ft_test renvoie line = %d\n", line); 
 	i = 0;
 	while (i <= 3)
 	{
 		////////// ca fonctionne pareil avec k = line ... ou k = *l ...
 		j = col + tmp->pos[i].x;
-		k = line + tmp->pos[i].y;
+		k = *l + tmp->pos[i].y;
 	
 //		printf("k = %d, j = %d\n", k, j);
 		if (tab[k] == 0 || tab[k][j] == '\0')
@@ -93,8 +93,8 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 		}
 	}
 	*c = col;
-	*l = line;
-	printf("Dernier point teste valide : [%i, %i]\n", line, col);
+//	*l = line;
+	printf("Dernier point teste valide : [%i, %i]\n", *l, col);
 	return (1);
 }
 
@@ -157,23 +157,22 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 {
 	t_triminos	*tmp;
-	int 		c;
-	int			l;
 	int			tri_placed;
 	int 		i;
+	char		end_char;
+	int			flag_end_loop;
 
 	tri_placed = 0;
 	tmp = list;
 	tab = ft_create_tab(size_tab);
 	ft_putendl("tableau cree");
 	i = 0;
-	l = 0;
-	c = 0;
+	flag_end_loop = 1;
 	while (i < ft_list_size(list))
 	{
 		// s'il arrive a placer le minos, passe au minos suivant :
 		//printf("ft_place renvoie = %i pour le mino %c \n", ft_place(tmp, tab, l, c), tmp->letter);
-		if (ft_place(tmp, tab, l, c))
+		if (ft_place(tmp, tab, 0, 0))
 		{
 			ft_putendl("rentre dans la boucle ft_place = 1");
 			tri_placed++;
@@ -183,17 +182,46 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
 		else
 		{
-			if (tmp->next && (tmp->letter - 64) < ft_list_size(list))
+			// Essaie Sim
+			if ((tmp->next) && flag_end_loop)
+			{
+
+				ft_putendl("rentre dans la boucle tmp->next");
+				printf("tmp->letter = %c\n", tmp->letter);
+				if (tmp->next->letter == end_char)
+				{
+					list = ft_lst_insert(list, tri_placed, end_char);
+					if (!tmp->next)
+					{
+						flag_end_loop = 0;
+						printf("flag a zero\n");
+					}
+				}
+				end_char = tmp->letter;
+				if (tmp->next)
+				{
+					tmp = tmp->next;
+					list = ft_lst_insert(list, tri_placed, tmp->letter);
+				}
+			}
+/*			if (tmp->next)
 			{
 			//////// probleme de rentrer dans cette boucle a linfinie malgres la nouvelle condition
 				ft_putendl("rentre dans la boucle tmp->next");
-				tmp = tmp->next;
+				
+				end_char = tmp->letter; //end_char == C
+
+				tmp = tmp->next; // tmp == D
 				list = ft_lst_insert(list, tri_placed, tmp->letter);
+				if (tmp->next->letter == end_char)
+
+				
 		//		ft_display_tri_lst(list);
-			}
+			}  */
 			//si on a echoue avec toutes les combinaisons commencant par une lettre :
 			else
 			{
+
 				ft_putendl("rentre dans le dernier else");
 				ft_free_tab(tab);
 				tab = ft_create_tab(size_tab);
@@ -204,6 +232,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 				tri_placed = 0;
 				list = ft_lst_insert(list, 0, 65 + i);
 				tmp = list;
+				flag_end_loop = 1;
 	//			printf("AFFICHAGE NEW LIST\n");
 	//			ft_display_tri_lst(list);
 			}
