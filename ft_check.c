@@ -6,13 +6,11 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:11:59 by mybenzar          #+#    #+#             */
-/*   Updated: 2018/12/13 16:29:42 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/24 15:07:01 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-#include <stdio.h>
 
 int	ft_check(char *str)
 {
@@ -25,17 +23,11 @@ int	ft_check(char *str)
 	while (str[i] && flag == 1)
 	{
 		if (str[i + 1] == '\0' && i > 18)
-		{
-			printf("VALIDE\n\n");
 			return (1);
-		}
 		if (str[i] == '\n' && str[i + 1] == '\n' && i > 3)
 			i = i + 2;
 		else if (str[i] == '\n')
-		{
-			i++; 
-//			printf("\nsaut de ligne \n");
-		}
+			i++;
 		j = 3;
 		while ((str[i] == '.' || str[i] == '#') && j > 0)
 		{
@@ -43,10 +35,7 @@ int	ft_check(char *str)
 			i++;
 		}
 		if (j != 0 || str[i + 1] != '\n')
-		{
 			flag = 0;
-			printf("i = %zu quand ca stoppe\n", i);
-		}
 		i++;
 	}
 	return (0);

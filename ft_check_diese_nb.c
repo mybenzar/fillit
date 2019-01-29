@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:10:07 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/17 17:49:45 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/24 15:08:17 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int	ft_check_diese_nb(t_list *list)
 				count++;
 			i++;
 		}
-//		printf("il y a %i dieses\n", count);
 		if (count != 4)
 			return (0);
 		list = list->next;

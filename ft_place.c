@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/29 14:52:13 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/29 15:12:37 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 //	printf("l = %p", l);
 	line = *l;
 
-/////////////  CI DESSOUS EST MORT LE PROBLEME DU CCC QUI MANGE LE B !!!!! 
+/////////////  CI DESSOUS EST MORT LE PROBLEME DU CCC QUI MANGE LE BB !!!!! 
 /////////////	avant : ft_find(tab, l, c);
 
 	ft_find(tab, &line, c);
@@ -183,11 +183,13 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
 		else
 		{
-			if (tmp->next)
+			if (tmp->next && (tmp->letter - 64) < ft_list_size(list))
 			{
+			//////// probleme de rentrer dans cette boucle a linfinie malgres la nouvelle condition
 				ft_putendl("rentre dans la boucle tmp->next");
 				tmp = tmp->next;
 				list = ft_lst_insert(list, tri_placed, tmp->letter);
+		//		ft_display_tri_lst(list);
 			}
 			//si on a echoue avec toutes les combinaisons commencant par une lettre :
 			else
