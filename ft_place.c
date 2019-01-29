@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/28 19:54:41 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/29 14:52:13 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	ft_find(char **tab, int *l, int *c)
 	}
 	*l = i;
 	*c = j;
+	printf("fd find valide pour [%i, %i]\n", j, i);
 }
 
 // ft_test va chercher sur toute la ligne s'il peut placer le mino
@@ -67,13 +68,18 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	col = 0;
 //	printf("l = %p", l);
 	line = *l;
-	ft_find(tab, l, c);
-	printf("ft_find dans ft_test renvoie line = %d\n", line); 
+
+/////////////  CI DESSOUS EST MORT LE PROBLEME DU CCC QUI MANGE LE B !!!!! 
+/////////////	avant : ft_find(tab, l, c);
+
+	ft_find(tab, &line, c);
+//	printf("ft_find dans ft_test renvoie line = %d\n", line); 
 	i = 0;
 	while (i <= 3)
 	{
+		////////// ca fonctionne pareil avec k = line ... ou k = *l ...
 		j = col + tmp->pos[i].x;
-		k = *l + tmp->pos[i].y;
+		k = line + tmp->pos[i].y;
 	
 //		printf("k = %d, j = %d\n", k, j);
 		if (tab[k] == 0 || tab[k][j] == '\0')
@@ -88,7 +94,7 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	}
 	*c = col;
 	*l = line;
-	printf("Dernier point teste valide : [%i, %i]\n", col, line);
+	printf("Dernier point teste valide : [%i, %i]\n", line, col);
 	return (1);
 }
 
