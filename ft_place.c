@@ -6,14 +6,14 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/30 13:44:20 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/30 19:05:47 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
 
-void	ft_find(char **tab, int *l, int *c)
+int		ft_find(char **tab, int *l, int *c)
 {
 	int	i;
 	int j;
@@ -26,12 +26,16 @@ void	ft_find(char **tab, int *l, int *c)
 		if (tab[i][j] == '\0')
 		{
 			j = 0;
-			i++;
+			if (tab[i + 1])
+				i++;
+			else
+				return (0);
 		}
 	}
 	*l = i;
 	*c = j;
-	printf("fd find valide pour [%i, %i]\n", j, i);
+	return (1);
+	//	printf("fd find valide pour [%i, %i]\n", j, i);
 }
 
 // ft_test va chercher sur toute la ligne s'il peut placer le mino
@@ -42,40 +46,33 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	int 		k;
 	int			col;
 	t_triminos	*tmp;
-	//	int			line;
 
 	tmp = list;
 	col = 0;
-	//	printf("l = %p", l);
-	//	line = *l;
-
-	/////////////  CI DESSOUS EST MORT LE PROBLEME DU CCC QUI MANGE LE BB !!!!! 
-	/////////////	avant : ft_find(tab, l, c);
-
-	ft_find(tab, l, c);
-	//	printf("ft_find dans ft_test renvoie line = %d\n", line); 
-	i = 0;
-	while (i <= 3)
+	if (ft_find(tab, l, c))
 	{
-		////////// ca fonctionne pareil avec k = line ... ou k = *l ...
-		j = col + tmp->pos[i].x;
-		k = *l + tmp->pos[i].y;
-
-		//		printf("k = %d, j = %d\n", k, j);
-		if (tab[k] == 0 || tab[k][j] == '\0')
-			return (0);
-		else if (tab[k][j] == '.')
-			i++;
-		else
+		i = 0;
+		while (i <= 3)
 		{
-			i = 0;
-			col++;
+			j = col + tmp->pos[i].x;
+			k = *l + tmp->pos[i].y;
+			if (tab[k] == 0 || tab[k][j] == '\0')
+				return (0);
+			else if (tab[k][j] == '.')
+				i++;
+			else
+			{
+				i = 0;
+				col++;
+			}
 		}
+		*c = col;
+		//	*l = line;
+		printf("Dernier point teste valide : [%i, %i]\n", *l, col);
+		return (1);
 	}
-	*c = col;
-	//	*l = line;
-	printf("Dernier point teste valide : [%i, %i]\n", *l, col);
-	return (1);
+	else
+		return (0);
 }
 
 int		ft_place(t_triminos *list, char **tab, int l, int c)
@@ -123,10 +120,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 
 	tri_placed = 0;
 	tmp = list;
-	// ajout d'une condition d'optimisation des calculs
-	ft_putnbr(size_tab);
 	tab = ft_create_tab(size_tab);
-	ft_putendl("tableau cree");
 	i = 0;
 	while (i < ft_list_size(list))
 	{
@@ -152,28 +146,32 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			}
 			// si on echoue avec toute les combinaisons a tri_placed
 			// A VERIFIER : dans lidee cest de rappeler avec tri placed -- MAIS IL NEST PAS ENCORE EFFACEE.
-			else if (tri_placed > 1)
+			/*else
+			  {
+			  printf("rentre dans le dernier else\n");
+			//printf("affichage du tableau apres avoir supprime la lettre '%c'\n", 65 + i);
+			while (tmp->letter != 
+			list = ft_lst_sort(list);
+			ft_display_tri_lst(list);
+			i++;
+			tri_placed--;
+			list = ft_lst_insert(list, tri_placed, 65 + i);
+			ft_display_tri_lst(list);
+			tmp = list;*/
+			//si on a echoue avec toutes les combinaisons commencant par une lettre :
+			else
 			{
+				ft_putendl("Nouvelle premiere lettre");
+				ft_free_tab(tab);
+				tab = ft_create_tab(size_tab);
+				ft_display_tab(tab);
+				list = ft_lst_sort(list);
 				i++;
-				ft_del(65 + i, tab);
-				list = ft_lst_sort(tmp);
-				list = ft_lst_insert(list, tri_placed--, 65 + i);
+				tri_placed = 0;
+				list = ft_lst_insert(list, 0, 65 + i);
 				tmp = list;
-				//si on a echoue avec toutes les combinaisons commencant par une lettre :
-				else
-				{
-					ft_putendl("Nouvelle premiere lettre");
-					ft_free_tab(tab);
-					tab = ft_create_tab(size_tab);
-					ft_display_tab(tab);
-					list = ft_lst_sort(list);
-					i++;
-					tri_placed = 0;
-					list = ft_lst_insert(list, 0, 65 + i);
-					tmp = list;
-					//			printf("AFFICHAGE NEW LIST\n");
-					//			ft_display_tri_lst(list);
-				}
+				//			printf("AFFICHAGE NEW LIST\n");
+				//			ft_display_tri_lst(list);
 			}
 		}
 		// condition d'arret de la recursion :
@@ -184,13 +182,13 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			//			printf("list size : %i\n", ft_list_size(list));
 			return (tab);
 		}
+		}
+		ft_putendl("tableau trop petit \n");
+		ft_free_tab(tab);
+		size_tab++;
+		list = ft_lst_sort(list);
+		tab = ft_browse(tab, list, size_tab);
+		return (tab);
 	}
-	ft_putendl("tableau trop petit \n");
-	ft_free_tab(tab);
-	size_tab++;
-	list = ft_lst_sort(list);
-	tab = ft_browse(tab, list, size_tab);
-	return (tab);
-}
 
 

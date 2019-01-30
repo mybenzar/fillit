@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/30 12:59:33 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/30 18:17:07 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -55,7 +55,6 @@ int			ft_list_size(t_triminos *tri_list);
 char		**ft_create_tab(int size);
 char		**ft_browse(char **tab, t_triminos *list, int size_tab);
 int			ft_place(t_triminos *list, char **tab, int l, int c);
-void		ft_find(char **tab, int *l, int *c);
 void		ft_display_tab(char **tab);
 void		ft_free_tab(char **tab);
 int			ft_check_diese_nb(t_list *list);
@@ -70,7 +69,7 @@ int			ft_test(t_triminos *list, char **tab, int *l, int *c);
 void		ft_del(int letter, char **tab);
 int			ft_test_for_lst_place(t_triminos *list, char **tab);
 int			ft_sqrt_int(int nb);
-
+int			ft_find(char **tab, int *l, int *c);
 
 // SIMON UPDATE
 
