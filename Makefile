@@ -6,7 +6,7 @@ SOURCES = ft_place.c ft_list_size.c ft_check.c ft_convert_to_t_list.c ft_tri_pos
 
 SRC_MYM	= ft_test_for_lst_place.c ft_create_tab.c ft_del.c ft_sqrt_int.c
 
-SRC_SIM	= ft_lst_insert.c ft_lst_sort.c 
+SRC_SIM	= ft_lst_insert.c ft_lst_sort.c ft_next_valid_letter.c
 
 
 

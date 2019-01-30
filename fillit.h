@@ -74,7 +74,8 @@ int			ft_find(char **tab, int *l, int *c);
 // SIMON UPDATE
 
 t_triminos	*ft_lst_insert(t_triminos *tri_list, int placed, char letter);
-t_triminos	*ft_lst_sort(t_triminos *tri_list);
+t_triminos	*ft_lst_sort(t_triminos *tri_list, int tri_placed);
 void		ft_display_tri_lst(t_triminos *tri_list);
+char		ft_next_valid_letter(t_triminos *lst, char letter);
 
 #endif
