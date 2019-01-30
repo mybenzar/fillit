@@ -1,28 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_sort.c                                      :+:      :+:    :+:   */
+/*   ft_del.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 19:41:29 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/30 13:44:20 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/01/30 12:23:19 by mybenzar          #+#    #+#             */
+/*   Updated: 2019/01/30 12:25:12 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_triminos	*ft_lst_sort(t_triminos *tri_list)
+void	ft_del(int letter, char **tab)
 {
-	int		i;
-	int		list_size;
+	int l;
+	int c;
 
-	i = 0;
-	list_size = ft_list_size(tri_list);
-	while (i < list_size)
+	l = 0;
+	while (tab[l])
 	{
-		tri_list = ft_lst_insert(tri_list, i, 65 + i);
-		i++;
+		c = 0;
+		while (tab[l][c])
+		{
+			if (tab[l][c] == letter)
+				tab[l][c] = '.';
+			c++;
+		}
+		l++;
 	}
-	return (tri_list);
 }

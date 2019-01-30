@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_sort.c                                      :+:      :+:    :+:   */
+/*   ft_sqrt_int.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 19:41:29 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/30 13:44:20 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/01/30 12:52:07 by mybenzar          #+#    #+#             */
+/*   Updated: 2019/01/30 13:00:30 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "fillit.h"
+#include "libft.h"
 
-t_triminos	*ft_lst_sort(t_triminos *tri_list)
+int	ft_sqrt_int(int nb)
 {
-	int		i;
-	int		list_size;
+	int i;
+	int	sqrt;
 
-	i = 0;
-	list_size = ft_list_size(tri_list);
-	while (i < list_size)
+	i = 1;
+	sqrt = 1;
+	if (nb == 1)
+		return (1);
+	if (nb <= 0)
+		return (0);
+	while (sqrt != nb)
 	{
-		tri_list = ft_lst_insert(tri_list, i, 65 + i);
 		i++;
+		sqrt = i * i;
+		if (sqrt > nb)
+			return (i);
 	}
-	return (tri_list);
+	return (i);
 }
