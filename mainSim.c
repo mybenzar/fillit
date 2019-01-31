@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/30 19:05:47 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/31 21:49:04 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,7 +109,7 @@ int	main(int ac, char **av)
 	//TEST FT BROWSE:
 	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
 	//printf("la racine renvoie %i pour nombre de minos = %i\n", ft_sqrt_int(ft_list_size(tri_list)), ft_list_size(tri_list));
-	//tab = ft_browse(tab, tri_list, 2 * ft_sqrt_int(ft_list_size(tri_list)));
+//	tab = ft_browse(tab, tri_list, 2 * ft_sqrt_int(ft_list_size(tri_list)));
 	tab = ft_browse(tab, tri_list, 4);
 	ft_display_tab(tab);
 	ft_free_tab(tab);

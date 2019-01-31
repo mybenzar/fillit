@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/31 17:17:53 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/31 17:57:11 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/31 21:16:46 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ char	ft_find_letter(t_triminos *list, int tri_placed)
 	t_triminos	*tmp;
 
 	tmp = list;
-	i = 0;
-	while (++i < tri_placed && tmp->next)
+	i = 1;
+	while (i < tri_placed && tmp->next)
+	{
 		tmp = tmp->next;
+		i++;
+	}
 	return (tmp->letter);
 }

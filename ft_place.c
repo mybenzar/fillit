@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/31 20:08:39 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/31 21:56:50 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,12 +145,14 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		else
 		{
 			printf("on rentre dans le else, lettre = %c\n", letter);
-			stepback = 0;
 			
-			ft_del(letter, tab);  // DEL de C, lettre toujours C
-			printf("del de %c\n", letter);
-			ft_display_tab(tab);
-			tri_placed--; //tri_placed = 2
+			if (ft_del(letter, tab))    	// DEL de C, lettre toujours C
+			{
+				printf("del de %c\n", letter);
+				ft_display_tab(tab);
+				tri_placed--; //tri_placed = 2
+			}
+			stepback = 0;
 	//		tmp = ft_lst_sort(list, tri_placed); // pointe sur B
 			
 			//si la lettre suivante existe et nest pas deja utilise
@@ -233,7 +235,13 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		ft_putendl("tableau trop petit \n");
 		ft_free_tab(tab);
 		size_tab++;
-		ft_lst_sort(list, 0);
+		
+		ft_display_tri_lst(list);
+		list = ft_lst_insert(list, 0, 'A'); //condition necessaire au reset de lst sort
+		ft_lst_sort(list, 0); 
+		printf("Liste fraichement trier avant nouveau tableau plus grand\n");
+		ft_display_tri_lst(list);
+
 		tab = ft_browse(tab, list, size_tab);
 		return (tab);
 	}

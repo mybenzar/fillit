@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 19:41:29 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/31 20:07:31 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/31 21:56:54 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,31 +16,42 @@
 void	ft_lst_sort(t_triminos *lst, int tri_placed)
 {
 	int 		index;
-	int			size_list;
-//	t_triminos	*start;
 	t_triminos	*tmp;
+	int 		i;
 
 	index = 1;
-//	size_list = ft_list_size(lst);
 	tmp = lst;
-//	start = lst;
-	while (index <= tri_placed && tmp->next)
-	{
-		index++;
-		tmp = tmp->next;
-	}
-	while (tmp->next)
-	{
-		if (tmp->letter > tmp->next->letter)
+	i = 0;
+	// CAS OU APPELER AVEC ZERO ET lst->letter == A  => RESET TOTAL 
+	if (tri_placed == 0 && lst->letter == 'A')
+		while (i < ft_list_size(lst))
 		{
-			printf("tmp->letter = %c, tmp->next->letter = %c, index = %i\n", tmp->letter, tmp->next->letter, index);
-			lst = ft_lst_insert(lst, (index - 1), tmp->next->letter);
-			printf("Apres le lst insert : tmp->letter = %c, tmp->next->letter = %c, index = %i\n", tmp->letter, tmp->next->letter, index);
-		//	tmp = tmp->next;
-		}	
-		else
+			ft_lst_insert(lst, i, 65 + i);
+			i++;
+		}
+	else
+	{
+		while (index <= tri_placed && tmp->next)
+		{
+			index++;
 			tmp = tmp->next;
-		index++;
+		}
+		while (tmp->next)
+		{
+			if (tmp->letter > tmp->next->letter)
+			{
+				printf("tmp->letter = %c, tmp->next->letter = %c, index = %i\n", 
+						tmp->letter, tmp->next->letter, index);
+				lst = ft_lst_insert(lst, (index - 1), tmp->next->letter);
+		//	printf("Apres le lst insert : tmp->letter = %c, tmp->next->letter = %c, 
+		//	index = %i\n", tmp->letter, tmp->next->letter, index); 
+		//	PRINTF QUI SEGFAULT CAR VAS VOIR ->NEXT QUI NEXISTE PAS;
+		//	tmp = tmp->next; pas besoin du coup
+			}	
+			else
+				tmp = tmp->next;
+			index++;
+		}
 	}
 }
 

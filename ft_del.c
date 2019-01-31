@@ -6,29 +6,35 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 12:23:19 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/30 18:19:58 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/31 21:05:30 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_del(int letter, char **tab)
+int	ft_del(int letter, char **tab)
 {
 	int l;
 	int c;
+	int flag;
 
 	l = 0;
+	flag = 0;
 	while (tab[l])
 	{
 		c = 0;
 		while (tab[l][c])
 		{
 			if (tab[l][c] == letter)
+			{
 				tab[l][c] = '.';
+				flag = 1;
+			}
 			c++;
 		}
 		l++;
 	}
+	return (flag);
 }
 
 
