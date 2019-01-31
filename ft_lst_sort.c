@@ -6,13 +6,44 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 19:41:29 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/30 13:44:20 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/01/31 17:34:20 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-t_triminos	*ft_lst_sort(t_triminos *tri_list, int tri_placed)
+void	ft_lst_sort(t_triminos *lst, int tri_placed)
+{
+	int index;
+	int	size_list;
+	t_triminos	*tmp;
+
+	index = 1;
+	size_list = ft_list_size(lst);
+	tmp = lst;
+	while (index <= tri_placed && tmp->next)
+	{
+		index++;
+		tmp = tmp->next;
+	}
+	while (tmp->next)
+	{
+		if (tmp->letter > tmp->next->letter)
+			lst = ft_lst_insert(lst, index, lst->next->letter);
+		index++;
+		tmp = tmp->next;
+	}
+}
+
+
+
+
+
+
+
+
+/*
+
 {
 	int		i;
 	int		j;
@@ -28,8 +59,9 @@ t_triminos	*ft_lst_sort(t_triminos *tri_list, int tri_placed)
 	//	tri_list = tri_list->next; // pointe sur le 2eme maillon
 		i++;
 	}
-	while (i < list_size)
+	while (i < list_size) // probleme de tri en fonction i au lieu de lettre restantes
 	{
+		if (tri_list->letter->next
 		tri_list = ft_lst_insert(tri_list, i, 65 + i);
 		i++;
 	}
@@ -39,4 +71,4 @@ t_triminos	*ft_lst_sort(t_triminos *tri_list, int tri_placed)
 //		tri_list = tri_list->next;
 //	}	
 	return (tri_list);
-}
+} */
