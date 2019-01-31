@@ -8,7 +8,7 @@ char	ft_next_valid_letter(t_triminos *lst, char letter)
 		lst = lst->next;
 	if (letter == lst->letter)
 	{
-		while (lst->next && letter > lst->letter)
+		while (lst->next && letter >= lst->letter)
 			lst = lst->next;
 		if (lst->letter > letter)
 			return (lst->letter);

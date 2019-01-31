@@ -144,17 +144,21 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		// ABC sont dans le tableau, tri_placed = 3, letter = C;
 		else
 		{
+			printf("on rentre dans le else, lettre = %c\n", letter);
 			stepback = 0;
-			tri_placed--; //tri_placed = 2
+			
 			ft_del(letter, tab);  // DEL de C, lettre toujours C
+			tri_placed--; //tri_placed = 2
 	//		tmp = ft_lst_sort(list, tri_placed); // pointe sur B
 			
 			//si la lettre suivante existe et nest pas deja utilise
 			if (ft_next_valid_letter(list, letter))
 			{
 				letter = ft_next_valid_letter(list, letter); // lettre = C
+				printf("next valid letter : %c, tri_placed : %i\n", letter, tri_placed);
 				list = ft_lst_insert(list, tri_placed, letter); //insert de C en 2 pour ACBDEF
-				tmp = ft_lst_sort(list, tri_placed); //nous met HEAD sur le 2eme maillon ajoute C
+			//	tmp = ft_lst_sort(list, tri_placed); //nous met HEAD sur le 2eme maillon ajoute C
+				ft_display_tri_lst(list);
 			}
 			else 			//si letter ++ nexiste pas (G) il a tout teste
 			{

@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
-/*
+
 void	ft_del(int letter, char **tab)
 {
 	int l;
@@ -30,10 +30,10 @@ void	ft_del(int letter, char **tab)
 		l++;
 	}
 }
-*/
+
 
 //ft_del supprime desormais toutes les lettres sauf celle mentionnee
-
+/*
 void	ft_del(int letter, char **tab)
 {
 	int l;
@@ -51,4 +51,4 @@ void	ft_del(int letter, char **tab)
 		}
 		l++;
 	}
-}
+} */
