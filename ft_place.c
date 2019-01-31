@@ -148,6 +148,8 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			stepback = 0;
 			
 			ft_del(letter, tab);  // DEL de C, lettre toujours C
+			printf("del de %c\n", letter);
+			ft_display_tab(tab);
 			tri_placed--; //tri_placed = 2
 	//		tmp = ft_lst_sort(list, tri_placed); // pointe sur B
 			
@@ -157,15 +159,19 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 				letter = ft_next_valid_letter(list, letter); // lettre = C
 				printf("next valid letter : %c, tri_placed : %i\n", letter, tri_placed);
 				list = ft_lst_insert(list, tri_placed, letter); //insert de C en 2 pour ACBDEF
-			//	tmp = ft_lst_sort(list, tri_placed); //nous met HEAD sur le 2eme maillon ajoute C
+		//		ft_display_tri_lst(list);
+				tmp = ft_lst_sort(list, tri_placed); //tri a pqrtir de tri placed
+				printf("\nNouvelle liste :\n");
 				ft_display_tri_lst(list);
+				while (tmp->letter != letter && tmp->next)
+					tmp = tmp->next;
 			}
 			else 			//si letter ++ nexiste pas (G) il a tout teste
 			{
-				printf("lettre nexiste pas : %c\n", letter);
+				printf("lettre nexiste pas : %c, tri_placed = %i\n", letter, tri_placed);
 				if (tri_placed == -1)
 					break ;				//break qui fait sortir de la loop si ya plus de lettre valide 
-				tmp = ft_lst_sort(list, (tri_placed - 1)); //HEAD sur le maillon davant
+		//		tmp = ft_lst_sort(list, (tri_placed - 1)); //HEAD sur le maillon davant
 				letter = tmp->letter;  
 				stepback = 1; //sert a remonter dun cran quand ya plus de lettre valide a tester;
 			}

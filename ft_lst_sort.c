@@ -15,15 +15,17 @@
 t_triminos	*ft_lst_sort(t_triminos *tri_list, int tri_placed)
 {
 	int		i;
+	int		j;
 	int		list_size;
-	t_triminos	*tmp;
+//	t_triminos	*start;
 
-	tmp = tri_list;
+//	start = tri_list;
 	i = 0;
+	j = 0;
 	list_size = ft_list_size(tri_list);
-	while (i < (tri_placed - 1))
+	while (i < (tri_placed + 1))
 	{
-		tmp = tmp->next; // pointe sur le 2eme maillon
+	//	tri_list = tri_list->next; // pointe sur le 2eme maillon
 		i++;
 	}
 	while (i < list_size)
@@ -31,5 +33,10 @@ t_triminos	*ft_lst_sort(t_triminos *tri_list, int tri_placed)
 		tri_list = ft_lst_insert(tri_list, i, 65 + i);
 		i++;
 	}
-	return (tmp);
+//	while (j < tri_placed)
+//	{
+//		j++;
+//		tri_list = tri_list->next;
+//	}	
+	return (tri_list);
 }
