@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/31 17:34:30 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/31 20:08:39 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,16 +159,18 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 				letter = ft_next_valid_letter(list, letter); // lettre = C
 				printf("next valid letter : %c, tri_placed : %i\n", letter, tri_placed);
 				list = ft_lst_insert(list, tri_placed, letter); //insert de C en 2 pour ACBDEF
-		//		ft_display_tri_lst(list);
-				ft_lst_sort(list, tri_placed); //tri a pqrtir de tri placed
+				ft_display_tri_lst(list);
+				printf("ft_lst_sort de la list\n");
+				ft_lst_sort(list, tri_placed + 1); //tri a pqrtir de tri placed
 				printf("\nNouvelle liste :\n");
 				ft_display_tri_lst(list);
-		//		while (tmp->letter != letter && tmp->next)
-		//			tmp = tmp->next;
+				tmp = list;
+				while (tmp->letter != letter && tmp->next)
+					tmp = tmp->next;
 			}
 			else 			//si letter ++ nexiste pas (G) il a tout teste
 			{
-				printf("lettre nexiste pas : %c, tri_placed = %i\n", letter, tri_placed);
+				printf("il ny a pas de lettre apres  %c, tri_placed = %i\n", letter, tri_placed);
 				if (tri_placed == 0)
 					break ;			//break qui fait sortir de la loop si ya plus de lettre valide 
 		//		tmp = ft_lst_sort(list, (tri_placed - 1)); //HEAD sur le maillon davant
@@ -231,7 +233,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		ft_putendl("tableau trop petit \n");
 		ft_free_tab(tab);
 		size_tab++;
-		list = ft_lst_sort(list, 0);
+		ft_lst_sort(list, 0);
 		tab = ft_browse(tab, list, size_tab);
 		return (tab);
 	}

@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 18:12:51 by struxill          #+#    #+#             */
-/*   Updated: 2019/01/24 15:42:08 by struxill         ###   ########.fr       */
+/*   Updated: 2019/01/31 19:57:04 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int			ft_check_insert_params(t_triminos *tri_list, int placed, char letter)
 	check = 0;
 	list_len = ft_list_size(tri_list);
 //	printf("list size is : %i\n", list_len);
-	if (list_len >= (letter - 64) && placed < (letter - 64) && placed >= 0)
+	if (list_len >= (letter - 64) && placed >= 0)
 		check = 1;
 	else
 		printf("\nles parametres de ft_lst_insert ne sont pas valides !!\n\n");
