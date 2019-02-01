@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 12:52:07 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/30 18:34:51 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/01 13:57:10 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	ft_sqrt_int(int nb)
 		i++;
 		sqrt = i * i;
 		if (sqrt > nb)
-			return (i--);
+		{
+			i--;
+			return (i);	
+		}
 	}
 	return (i);
 }

@@ -1,0 +1,33 @@
+
+
+Test result du ok_25_blocks en 4min27
+(49,82 user 58,01 system 40% cpu 4:27,02 total)
+
+AAB..CCDD.E
+AABBCC.DDEE
+GGBFFF.HHEK
+.GIIJFHHKKK
+NG.IJJLLLMM
+NN.I.JQL.MM
+NOOPPQQRRR.
+OOWPPQYYYR.
+SSWWVV.YUU.
+.S.WXV.UUTT
+.SXXXV...TT
+
+
+
+Test result du examples/ok_26_blocks en 5min47
+(61,15s user 69,69s system 37% cpu 5:47,02 total
+
+AAB..CCDD.E
+AABBCC.DDEE
+GGBFFFHH.E.
+.G.IIFHHJJ.
+KGIILZZZRJ.
+KKLLLXZRRJY
+.KMMMXXRYYY
+.VVMUUXWWQQ
+VVTTUUO.WQQ
+SSSTNNOOWPP
+..STNNO.PP.
