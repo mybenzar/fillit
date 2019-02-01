@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 19:03:52 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/01 20:28:32 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/01 21:54:50 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ char	ft_next_valid_letter(t_triminos *lst, char letter, char **tab)
 		lst = lst->next;
 	if (letter == lst->letter)
 	{
-		while (lst->next && letter >= lst->letter)// && !ft_test_for_lst_place(lst, tab))
+		while (lst->next && letter >= lst->letter && !ft_test_for_lst_place(lst, tab))
 			lst = lst->next;
-		if (lst->letter > letter)
+		if (lst->letter > letter && lst->letter < 91)
 			return (lst->letter);
 		else
 			return (0);
