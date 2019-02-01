@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 16:36:17 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/01 18:04:57 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,15 +42,14 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	int			i;
 	int			j;
 	int			k;
-	int			col;
 
-	col = 0;
-	if (ft_find(tab, l, &col))
+	*c = 0;
+	if (ft_find(tab, l, c))
 	{
 		i = 0;
 		while (i <= 3)
 		{
-			j = col + list->pos[i].x;
+			j = *c + list->pos[i].x;
 			k = *l + list->pos[i].y;
 			if (tab[k] == 0 || tab[k][j] == '\0')
 				return (0);
@@ -59,10 +58,9 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 			else
 			{
 				i = 0;
-				col++;
+				*c = *c + 1;
 			}
 		}
-		*c = col;
 		return (1);
 	}
 	return (0);

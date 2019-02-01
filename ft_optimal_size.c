@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sqrt_int.c                                      :+:      :+:    :+:   */
+/*   ft_optimal_size.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/30 12:52:07 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 13:57:10 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/02/01 17:26:16 by mybenzar          #+#    #+#             */
+/*   Updated: 2019/02/01 17:26:36 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_sqrt_int(int nb)
+int	ft_optimal_size(int nb)
 {
 	int i;
-	int	sqrt;
+	int	square;
 
 	i = 1;
-	sqrt = 1;
+	square = 1;
 	if (nb == 1)
 		return (1);
 	if (nb <= 0)
 		return (0);
-	while (sqrt != nb)
+	while (square != nb)
 	{
 		i++;
-		sqrt = i * i;
-		if (sqrt > nb)
+		square = i * i;
+		if (square > nb)
 		{
 			i--;
-			return (i);	
+			return ((2 * i) + 1);	
 		}
 	}
-	return (i);
+	return (2 * i);
 }
