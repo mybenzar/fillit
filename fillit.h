@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 17:23:07 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:25:50 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -77,6 +77,6 @@ char		ft_find_letter(t_triminos *list, int tri_placed);
 t_triminos	*ft_lst_insert(t_triminos *tri_list, int placed, char letter);
 void		ft_lst_sort(t_triminos *tri_list, int tri_placed);
 void		ft_display_tri_lst(t_triminos *tri_list);
-char		ft_next_valid_letter(t_triminos *lst, char letter);
+char		ft_next_valid_letter(t_triminos *lst, char letter, char **tab);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/29 19:00:56 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 16:36:18 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:33:25 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int		ft_test_for_lst_place(t_triminos *list, char **tab)
 		return (0);
 	else if (!ft_test(tmp, tab, &l, &c) && tab[l + 1])
 	{
-		if (ft_place(tmp, tab, ++l, 0))
+		l++;
+		c = 0;
+		if (ft_test(tmp, tab, &l, &c))
 			return (1);
-		else
-			return (0);
 	}
 	return (0);
 }

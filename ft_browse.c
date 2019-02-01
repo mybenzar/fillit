@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 14:10:45 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 15:15:58 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/01 19:26:27 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			tri_placed++;
 			letter = tmp->letter;
 			tmp = tmp->next;
-	//		ft_display_tab(tab);
+			ft_display_tab(tab);
 		}
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
 		// EXEMPLE pour ABCDEF avec ABC qui rentre et D non.
@@ -52,17 +52,20 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 				tri_placed--; //tri_placed = 2
 			}
 			stepback = 0;
+			ft_lst_sort(list, tri_placed + 1);
 	//		tmp = ft_lst_sort(list, tri_placed); // pointe sur B
 			
 			//si la lettre suivante existe et nest pas deja utilise
-			if (ft_next_valid_letter(list, letter))
+			if (ft_next_valid_letter(list, letter, tab))
 			{
-				letter = ft_next_valid_letter(list, letter); // lettre = C
-		//		printf("next valid letter : %c, tri_placed : %i\n", letter, tri_placed);
+				printf("list a valid letter, et tmp->letter = %c\n", tmp->letter);
+		//		ft_display_tri_lst(list);
+				letter = ft_next_valid_letter(list, letter, tab); // lettre = C
+				printf("next valid letter : %c, tri_placed : %i\n", letter, tri_placed);
 				list = ft_lst_insert(list, tri_placed, letter); //insert de C en 2 pour ACBDEF
 		//		ft_display_tri_lst(list);
 		//		printf("ft_lst_sort de la list\n");
-				ft_lst_sort(list, tri_placed + 1); //tri a pqrtir de tri placed
+	//			ft_lst_sort(list, tri_placed + 1); //tri a pqrtir de tri placed
 		//		printf("\nNouvelle liste :\n");
 		//		ft_display_tri_lst(list);
 				tmp = list;
@@ -76,7 +79,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 					break ;			//break qui fait sortir de la loop si ya plus de lettre valide 
 		//		tmp = ft_lst_sort(list, (tri_placed - 1)); //HEAD sur le maillon davant
 				letter = ft_find_letter(list, tri_placed);
-		//		printf("stepback sur letter %c\n", letter);
+				printf("stepback sur letter %c\n", letter);
 				// replacer tete de liste sur E
 				stepback = 1; //sert a remonter dun cran quand ya plus de lettre valide a tester;
 			}
