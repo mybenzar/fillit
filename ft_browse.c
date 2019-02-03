@@ -28,8 +28,6 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	stepback = 0;
 	while (tri_placed < ft_list_size(list))
 	{
-		// s'il arrive a placer le minos, passe au minos suivant :
-		//printf("ft_place renvoie = %i pour le mino %c \n", ft_place(tmp, tab, l, c), tmp->letter);
 		if (!stepback && ft_place(tmp, tab, 0, 0))
 		{
 			ft_putendl("rentre dans la boucle ft_place = 1");
@@ -39,21 +37,33 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			ft_display_tab(tab);
 		}
 		// s'il n'arrive a le placer nulle part, essayer de placer le suivant a la place
-		// EXEMPLE pour ABCDEF avec ABC qui rentre et D non.
-		// ABC sont dans le tableau, tri_placed = 3, letter = C;
 		else
 		{
-			printf("on rentre dans le else, lettre = %c\n", letter);
+			printf("TEST on rentre dans le else, lettre = %c\n", letter);
 			
-			if (ft_del(letter, tab))    	// DEL de C, lettre toujours C
+			if (ft_del(letter, tab))  // DEL de C, lettre toujours C
 			{
 				printf("del de %c\n", letter);
 				ft_display_tab(tab);
 				tri_placed--; //tri_placed = 2
 			}
+			if (!stepback)
+			{
+				tmp = list;
+				while (tmp->letter != ft_find_letter(list, tri_placed) && tmp->next)
+					tmp = tmp->next;
+				letter = tmp->letter;
+				if (ft_del(letter, tab))  // DEL de C, lettre toujours C
+				{
+					printf("del de %c\n", letter);
+					ft_display_tab(tab);
+					tri_placed--; //tri_placed = 2
+				}
+			}
 			stepback = 0;
+
 			ft_lst_sort(list, tri_placed + 1);
-	//		tmp = ft_lst_sort(list, tri_placed); // pointe sur B
+			ft_display_tri_lst(list);
 			
 			//si la lettre suivante existe et nest pas deja utilise
 			if (ft_next_valid_letter(list, letter, tab))
@@ -65,9 +75,9 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 				list = ft_lst_insert(list, tri_placed, letter); //insert de C en 2 pour ACBDEF
 		//		ft_display_tri_lst(list);
 		//		printf("ft_lst_sort de la list\n");
-	//			ft_lst_sort(list, tri_placed + 1); //tri a pqrtir de tri placed
+				ft_lst_sort(list, tri_placed + 1); //tri a pqrtir de tri placed
 		//		printf("\nNouvelle liste :\n");
-		//		ft_display_tri_lst(list);
+				ft_display_tri_lst(list);
 				tmp = list;
 				while (tmp->letter != letter && tmp->next)
 					tmp = tmp->next;
@@ -80,8 +90,13 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		//		tmp = ft_lst_sort(list, (tri_placed - 1)); //HEAD sur le maillon davant
 				letter = ft_find_letter(list, tri_placed);
 				printf("stepback sur letter %c\n", letter);
+				stepback = 1;
 				// replacer tete de liste sur E
-				stepback = 1; //sert a remonter dun cran quand ya plus de lettre valide a tester;
+		//		if (stepback == 0)
+		//			stepback = 1;
+		//		else
+		//			stepback = 0;
+					//sert a remonter dun cran quand ya plus de lettre valide a tester;
 			}
 		}
 	}
@@ -105,5 +120,3 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 		tab = ft_browse(tab, list, size_tab);
 		return (tab);
 	}
-
-

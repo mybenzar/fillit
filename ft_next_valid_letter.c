@@ -15,19 +15,21 @@
 char	ft_next_valid_letter(t_triminos *lst, char letter, char **tab)
 {
 	char		ret;
-	t_triminos	*tmp;
+//	t_triminos	*tmp;
+
 
 	while (lst->next && letter != lst->letter)
 		lst = lst->next;
 	if (letter == lst->letter)
 	{
-		while (lst->next && letter >= lst->letter && !ft_test_for_lst_place(lst, tab))
-			lst = lst->next;
-		if (lst->letter > letter && lst->letter < 91)
-			return (lst->letter);
-		else
-			return (0);
+		while (lst) 
+		{
+			if ((lst->letter > letter) && !ft_shape(letter, lst->letter, lst))
+			//&& ft_test_for_lst_place(lst, tab))
+				return (lst->letter);
+			else
+				lst = lst->next;
+		}
 	}
-	else
-		return (0);
+	return (0);
 }

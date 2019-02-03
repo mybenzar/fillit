@@ -24,5 +24,8 @@ char	ft_find_letter(t_triminos *list, int tri_placed)
 		tmp = tmp->next;
 		i++;
 	}
-	return (tmp->letter);
+	if (tmp->letter > 64 && tmp->letter < 91)
+		return (tmp->letter);
+	ft_putendl("error de ft_find_letter");
+	return (0);
 }
