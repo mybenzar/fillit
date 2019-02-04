@@ -47,7 +47,7 @@ int	main(int ac, char **av)
 	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
 	tab = ft_browse(tab, tri_list, ft_optimal_size(ft_list_size(tri_list)));
 	ft_display_tab(tab);
-	printf("la taille optimale est : %i\n", ft_optimal_size(ft_list_size(tri_list)));
+	printf("la taille optimale est : %i pour %i minos en entree \n", ft_optimal_size(ft_list_size(tri_list)), ft_list_size(tri_list));
 	ft_free_tab(tab);
 	return (0);
 }

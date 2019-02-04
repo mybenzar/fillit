@@ -16,8 +16,10 @@ int	ft_optimal_size(int nb)
 {
 	int i;
 	int	square;
+	int	k;
 
 	i = 1;
+	k = 1;
 	square = 1;
 	if (nb == 1)
 		return (1);
@@ -30,7 +32,9 @@ int	ft_optimal_size(int nb)
 		if (square > nb)
 		{
 			i--;
-			return ((2 * i) + 1);	
+			while (i * i + k < nb)
+				k++;
+			return (i * i + k);	
 		}
 	}
 	return (2 * i);
