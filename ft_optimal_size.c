@@ -10,16 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "fillit.h"
+
+#include <stdio.h>
 
 int	ft_optimal_size(int nb)
 {
-	int i;
-	int	square;
-	int	k;
+	int		i;
+	int		square;
+//	float	rounded;
+	float	res;
 
 	i = 1;
-	k = 1;
 	square = 1;
 	if (nb == 1)
 		return (1);
@@ -32,10 +34,23 @@ int	ft_optimal_size(int nb)
 		if (square > nb)
 		{
 			i--;
-			while (i * i + k < nb)
-				k++;
-			return (i * i + k);	
+			printf("i = %i\n", i);
+			res = i;
+			res = (res + (float)nb / res) / 2;
+			printf("res = %f\n", res);
+		//	rounded = (int)(res * 10 + 5) / 10;
+		//	printf("rounded = %f\n", rounded);
+			if ((int)(res * 10) % 10 != 0)
+				return (2 * (int)res + 1);
+			else
+				return (2 * (int)res);
 		}
 	}
 	return (2 * i);
 }
+
+/*int	main(void)
+{
+	printf("resultat = %i\n", ft_optimal_size(15));
+	return (0);
+}*/
