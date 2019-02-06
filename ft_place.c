@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 21:08:20 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/06 18:34:50 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,27 +42,34 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 	int			i;
 	int			j;
 	int			k;
-	int			col;
 
-	col = 0;
-	if (ft_find(tab, l, &col))
+	*c = 0;
+	if (ft_find(tab, l, c))
 	{
 		i = 0;
 		while (i <= 3)
 		{
-			j = col + list->pos[i].x;
+			j = *c + list->pos[i].x;
 			k = *l + list->pos[i].y;
-			if (k < 0 || j < 0 || tab[k] == 0 || tab[k][j] == '\0')
-				return (0);
-			else if (tab[k][j] == '.')
-				i++;
-			else
+			printf("pour i = %i : j = %i et k = %i\n", i, j, k);
+			if (j < 0)
 			{
 				i = 0;
-				col++;;
+				*c = *c + 1;
 			}
+			else if (tab[k] && tab[k][j] && tab[k][j] != '\0')
+			{
+				if (tab[k][j] == '.')
+					i++;
+				if (tab[k][j] >= 'A' && tab[k][j] <= 'Z')
+				{
+					i = 0;
+					*c = *c + 1;
+				}
+			}
+			else
+					return (0);
 		}
-		*c = col;
 		return (1);
 	}
 	return (0);
@@ -92,9 +99,11 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 		}
 		return (1);
 	}
-	else if (!ft_test(tmp, tab, &l, &c) && !tab[l + 1])
+	else if (!tab[l + 1])
+	{
 		return (0);
-	else if (!ft_test(tmp, tab, &l, &c) && tab[l + 1])
+	}
+	else
 	{
 		if (ft_place(tmp, tab, ++l, 0))
 			return (1);

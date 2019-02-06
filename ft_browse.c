@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 14:10:45 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/01 19:26:27 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/06 18:34:51 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,14 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			
 			if (ft_del(letter, tab))  // DEL de C, lettre toujours C
 			{
+				printf("rentre dans if ft_del\n");
 				printf("del de %c\n", letter);
 				ft_display_tab(tab);
 				tri_placed--; //tri_placed = 2
 			}
-			if (!stepback)
+/*			if (!stepback)
 			{
+				printf("rentre dans if !stepback\n");
 				tmp = list;
 				while (tmp->letter != ft_find_letter(list, tri_placed) && tmp->next)
 					tmp = tmp->next;
@@ -59,9 +61,8 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 					ft_display_tab(tab);
 					tri_placed--; //tri_placed = 2
 				}
-			}
+			} */
 			stepback = 0;
-
 			ft_lst_sort(list, tri_placed + 1);
 			ft_display_tri_lst(list);
 			
