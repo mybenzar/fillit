@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/07 16:37:42 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:30:32 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,7 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 		{
 			j = *c + list->pos[i].x;
 			k = *l + list->pos[i].y;
-			if (j < 0)
-			{
-				i = 0;
-				*c = *c + 1;
-			}
-			else if (tab[k] && tab[k][j] && tab[k][j] != '\0')
+			if (tab[k] && tab[k][j] && tab[k][j] != '\0')
 			{
 				if (tab[k][j] == '.')
 					i++;
@@ -97,11 +92,11 @@ int		ft_place(t_triminos *list, char **tab, int l, int c)
 		}
 		return (1);
 	}
-	else if (/*!ft_test(tmp, tab, &l, &c) && */ !tab[l + 1])
+	else if (!tab[l + 1])
 	{
 		return (0);
 	}
-	else /*if (!ft_test(tmp, tab, &l, &c) && tab[l + 1])*/
+	else
 	{
 		if (ft_place(tmp, tab, ++l, 0))
 			return (1);
