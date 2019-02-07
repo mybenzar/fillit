@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:11:59 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/24 15:07:01 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/07 19:54:25 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,38 @@
 
 int	ft_check(char *str)
 {
-	size_t	i;
-	size_t	j;
-	int		flag;
+	int i;
+	int j;
+	int	diese_nb;
+	int dot_nb;
+	int cr_nb;
 
-	flag = 1;
 	i = 0;
-	while (str[i] && flag == 1)
+	j = 0;
+	while (str)
 	{
-		if (str[i + 1] == '\0' && i > 18)
-			return (1);
-		if (str[i] == '\n' && str[i + 1] == '\n' && i > 3)
-			i = i + 2;
-		else if (str[i] == '\n')
-			i++;
-		j = 3;
-		while ((str[i] == '.' || str[i] == '#') && j > 0)
+		diese_nb = 0;
+		dot_nb = 0;
+		cr_nb = 0;
+		while (i < j + 20 && str[i])
 		{
-			j--;
+			if (str[i] == '.')
+				dot_nb++;
+			if (str[i] == '#')
+				diese_nb++;
+			if (str[i] == '\n')
+				cr_nb++;
 			i++;
 		}
-		if (j != 0 || str[i + 1] != '\n')
-			flag = 0;
-		i++;
+		if (dot_nb != 12 || diese_nb != 4 || cr_nb != 4)
+			return (0);
+		if (str[i] == '\0')
+			return (1);
+		if (str[i] != '\n')
+			return (0);
+		else
+			i++;
+		j = i;
 	}
 	return (0);
 }

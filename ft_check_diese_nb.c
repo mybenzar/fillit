@@ -6,12 +6,14 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 16:10:07 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/01 18:06:18 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/07 17:38:55 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdio.h>
+
+// A SUPPRIMER, remplacee maintenant par ft_check.
 
 int	ft_check_diese_nb(t_list *list)
 {
