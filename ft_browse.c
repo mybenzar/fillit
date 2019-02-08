@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 14:10:45 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/07 18:04:23 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/08 11:52:15 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	int 		i;
 	char		letter;
 	int			stepback;
-	int			flag;
 
-	flag = 0;
 	tri_placed = 0;
 	tmp = list;
 	tab = ft_create_tab(size_tab);
@@ -30,7 +28,7 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 	stepback = 0;
 	while (tri_placed < ft_list_size(list))
 	{
-		if (!stepback && ft_place(tmp, tab, 0, 0))
+		if (!stepback && ft_place_bis(tmp, tab, 0, 0))
 		{
 			ft_putendl("rentre dans la boucle ft_place = 1");
 			tri_placed++;
@@ -43,7 +41,6 @@ char	**ft_browse(char **tab, t_triminos *list, int size_tab)
 			printf("TEST on rentre dans le else, lettre = %c\n", letter);
 			if (ft_del(letter, tab))
 			{
-				flag = 1;
 				printf("rentre dans if ft_del\n");
 				printf("del de %c\n", letter);
 				ft_display_tab(tab);
