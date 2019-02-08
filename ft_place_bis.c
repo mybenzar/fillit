@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 11:19:27 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/08 13:36:09 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/08 14:37:16 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,12 @@ int		ft_test_bis(t_triminos *list, char **tab, int *l, int *c)
 	{
 		j = *c + list->pos[i].x;
 		k = *l + list->pos[i].y;
-		if (tab[k] && tab[k][j] && tab[k][j] != '\0')
+		if (j < 0)
+		{
+			i = 0;
+			*c = *c + 1;
+		}
+		else if (tab[k] && tab[k][j] && tab[k][j] != '\0')
 		{
 			if (tab[k][j] == '.')
 				i++;

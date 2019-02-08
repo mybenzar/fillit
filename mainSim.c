@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/08 12:52:22 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/08 14:19:17 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,13 @@ int	main(int ac, char **av)
 	int		d;
 
 	if (ac != 2)
-	{
-		printf("Invalid numbers of arguments\nUsage : ./a.out input.txt\n");
 		return (0);
-	}
 	fd = open(av[1], O_RDONLY);
 	ret = read(fd, buf, BUFF_SIZE);
-	printf("ret = %d\n", ret);
 	buf[ret] = '\0';
-	printf("%s", buf);
-	printf("TEST TRI_LIST MAKING AND DISPLAY (UP AND LEFT ALREADY)\n\n");
 	tri_list = ft_check_and_convert(buf);
-
-	//TEST FT BROWSE:
-	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
-	printf("la taille de liste est %d\n", ft_list_size(tri_list));
 	tab = ft_browse(tab, tri_list, ft_optimal_size(ft_list_size(tri_list)));
 	ft_display_tab(tab);
-	printf("la taille optimale est : %i pour %i minos en entree \n", ft_optimal_size(ft_list_size(tri_list)), ft_list_size(tri_list));
 	ft_free_tab(tab);
 	return (0);
 }
