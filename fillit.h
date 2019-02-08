@@ -65,12 +65,13 @@ void		ft_assign_letter(t_triminos *tri_list);
 // MYMA UPDATES
 
 int			ft_test_bis(t_triminos *list, char **tab, int *l, int *c);
-int			ft_del(int letter, char **tab);
+void		ft_del(int letter, char **tab);
 int			ft_test_for_lst_place(t_triminos *list, char **tab);
 int			ft_optimal_size(int nb);
 void		ft_find(char **tab, int *l, int *c, int x_pos);
 char		ft_find_letter(t_triminos *list, int tri_placed);
 int			ft_place_bis(t_triminos *list, char **tab, int l, int c);
+char		**ft_scan(char **tab, t_triminos *list, int size_tab);
 
 // SIMON UPDATE
 

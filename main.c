@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 		ft_putendl("error");
 		return (0);
 	}
-	tab = ft_browse(tab, tri_list, ft_optimal_size(ft_list_size(tri_list)));
+	tab = ft_scan(tab, tri_list, ft_optimal_size(ft_list_size(tri_list)));
 	ft_display_tab(tab);
 	ft_free_tab(tab);
 	return (0);
