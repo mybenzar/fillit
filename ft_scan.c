@@ -12,13 +12,15 @@
 
 #include "fillit.h"
 
-char	**ft_scan(char **tab, t_triminos *list, int size_tab)
+char	**ft_scan(t_triminos *list, int size_tab)
 {
 	int			placed;
 	int 		l;
 	int			c;
 	t_triminos	*tmp;
+	char		**tab;
 	
+	tab = ft_create_tab(size_tab);
 	tmp = list;
 	placed = 0;
 	l = 0;

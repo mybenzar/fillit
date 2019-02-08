@@ -71,7 +71,7 @@ int			ft_optimal_size(int nb);
 void		ft_find(char **tab, int *l, int *c, int x_pos);
 char		ft_find_letter(t_triminos *list, int tri_placed);
 int			ft_place_bis(t_triminos *list, char **tab, int l, int c);
-char		**ft_scan(char **tab, t_triminos *list, int size_tab);
+char		**ft_scan(t_triminos *list, int size_tab);
 
 // SIMON UPDATE
 
