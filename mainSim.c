@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 14:24:31 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/01 17:59:47 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/08 12:52:22 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	main(int ac, char **av)
 
 	//TEST FT BROWSE:
 	printf("\n\n*******************TEST FT_BROWSE***************** \n\n");
+	printf("la taille de liste est %d\n", ft_list_size(tri_list));
 	tab = ft_browse(tab, tri_list, ft_optimal_size(ft_list_size(tri_list)));
 	ft_display_tab(tab);
 	printf("la taille optimale est : %i pour %i minos en entree \n", ft_optimal_size(ft_list_size(tri_list)), ft_list_size(tri_list));
