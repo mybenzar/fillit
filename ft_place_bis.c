@@ -41,7 +41,6 @@ int		ft_test_bis(t_triminos *list, char **tab, int *l, int *c)
 	int	j;
 	int k;
 
-	//	ft_find(tab, l, c, list->pos[0].x);
 	i = 0;
 	while (i <= 3)
 	{

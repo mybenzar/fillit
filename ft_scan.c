@@ -14,15 +14,30 @@
 
 char	**ft_scan(char **tab, t_triminos *list, int size_tab)
 {
-	int	placed;
+	int			placed;
+	int 		l;
+	int			c;
+	t_triminos	*tmp;
 	
+	tmp = list;
 	placed = 0;
 	while (placed < ft_list_size(list))
-		while (ft_place(tmp, tab, l, c))
 	{
-		placed++;
-		if (ft_test(tmp->next, tab, &l, &c))
-			tmp = tmp->next;
+		if (ft_place_bis(tmp, tab, l, c))
+		{
+			placed++;
+			if (ft_test_bis(tmp->next, tab, &l, &c))
+				tmp = tmp->next;
+			else if (tab[l] && tab[l][c] != '\0')
+				c++;
+			else if (tab[l + 1])
+				l++;
+		}
+		else
+		{
+			ft_del(tmp->letter, tab);
+			placed--;
+		}
 	}
 	
 }

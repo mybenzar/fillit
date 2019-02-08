@@ -12,34 +12,6 @@
 
 #include "fillit.h"
 
-int	ft_del(int letter, char **tab)
-{
-	int l;
-	int c;
-	int flag;
-
-	l = 0;
-	flag = 0;
-	while (tab[l])
-	{
-		c = 0;
-		while (tab[l][c])
-		{
-			if (tab[l][c] == letter)
-			{
-				tab[l][c] = '.';
-				flag = 1;
-			}
-			c++;
-		}
-		l++;
-	}
-	return (flag);
-}
-
-
-//ft_del supprime desormais toutes les lettres sauf celle mentionnee
-/*
 void	ft_del(int letter, char **tab)
 {
 	int l;
@@ -51,10 +23,10 @@ void	ft_del(int letter, char **tab)
 		c = 0;
 		while (tab[l][c])
 		{
-			if (tab[l][c] != letter && tab[l][c] != '.')
+			if (tab[l][c] == letter)
 				tab[l][c] = '.';
 			c++;
 		}
 		l++;
 	}
-} */
+}
