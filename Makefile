@@ -8,7 +8,7 @@ SRC_MYM	= ft_create_tab.c ft_del.c ft_optimal_size.c ft_find_letter.c
 
 SRC_SIM	= ft_lst_insert.c ft_lst_sort.c ft_next_valid_letter.c ft_shape.c
 
-SRC_NEW = ft_scan.c
+SRC_NEW = ft_scan.c ft_find_l.c ft_find_c.c
 
 
 

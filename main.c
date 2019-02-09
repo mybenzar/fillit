@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/06 17:14:06 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/06 17:25:26 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/09 17:06:44 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	main(int ac, char **av)
 	tab = ft_scan(tri_list, ft_optimal_size(ft_list_size(tri_list)));
 	ft_display_tab(tab);
 	ft_free_tab(tab);
+	// ft_free_list a coder;
 	return (0);
 }

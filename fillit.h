@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/08 14:33:39 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/09 17:33:06 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -40,6 +40,7 @@ typedef struct	s_triminos
 {
 	t_pos				pos[4];
 	struct s_triminos	*next;
+	struct s_triminos	*prev;
 	char				letter;
 }				t_triminos;
 
@@ -71,6 +72,8 @@ int			ft_optimal_size(int nb);
 void		ft_find(char **tab, int *l, int *c, int x_pos);
 char		ft_find_letter(t_triminos *list, int tri_placed);
 int			ft_place_bis(t_triminos *list, char **tab, int l, int c);
+
+
 char		**ft_scan(t_triminos *list, int size_tab);
 
 // SIMON UPDATE
@@ -80,5 +83,7 @@ void		ft_lst_sort(t_triminos *tri_list, int tri_placed);
 void		ft_display_tri_lst(t_triminos *tri_list);
 char		ft_next_valid_letter(t_triminos *lst, char letter, char **tab);
 int			ft_shape(char l1, char l2, t_triminos *lst);
+int			ft_find_l(char letter, char **tab);
+int			ft_find_c(char letter, char **tab);
 
 #endif

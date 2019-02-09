@@ -1,29 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_t_list_to_tri_list.c                            :+:      :+:    :+:   */
+/*   ft_find_l.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/16 17:52:03 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/09 17:07:06 by struxill         ###   ########.fr       */
+/*   Created: 2019/02/09 17:22:56 by struxill          #+#    #+#             */
+/*   Updated: 2019/02/09 17:29:53 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-t_triminos	*ft_t_list_to_tri_list(t_list *list)
+int	ft_find_l(char letter, char	**tab)
 {
-	t_triminos	*start;
-//	t_triminos	*tmp;
+	int i;
+	int j;
 
-	start = ft_lst_tri_new(ft_left(ft_tri_pos(list)));
-	while (list->next)
+	i = 0;
+	j = 0;
+	while (tab[i][j])
 	{
-		ft_lst_tri_add(&start, ft_lst_tri_new(ft_left(ft_tri_pos(list->next))));
-//		start->next->prev = start;
-		list = list->next;
+		if (tab[i][j] == letter)
+			return (i);
+		if (tab[i][j + 1])
+			j++;
+		else if (tab[i + 1])
+		{
+			i++;
+			j = 0;
+		}
+		else
+			break ;
 	}
-	return (start);
+	return (-1);
 }
