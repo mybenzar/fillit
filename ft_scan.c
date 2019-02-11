@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 10:58:27 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/09 19:06:10 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/11 15:21:22 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	**ft_scan(t_triminos *list, int size_tab)
 			tmp_l = l;
 			tmp_c = c;
 			placed++;
-			printf("ft_place = 1\n");
-			ft_display_tab(tab);
-			ft_putchar('\n');
+//			printf("ft_place = 1\n");
+//			ft_display_tab(tab);
+//			ft_putchar('\n');
 			l = 0;  //reinitialisation pour ft_find
 			c = 0;
 			// le if suivant est une condition darret anticipe car sinon apres le dernier placer 
@@ -48,7 +48,7 @@ char	**ft_scan(t_triminos *list, int size_tab)
 			ft_find(tab, &l, &c, list->pos[0].x); //necessaire pour se replacer au debut du tableau avant test
 			if (ft_test_bis(tmp->next, tab, &l, &c)) //si le suivant rentre il se met dessus
 				tmp = tmp->next;
-			else //si le suivant rentre pas il revien au valeur de l et c d'avant le test pour incrementer
+			else //si le suivant rentre pas il revient au valeur de l et c d'avant le test pour incrementer
 			{
 //				printf("tmp->next ne rentre pas, del de %c\n", tmp->letter);
 				l = tmp_l;
@@ -65,19 +65,19 @@ char	**ft_scan(t_triminos *list, int size_tab)
 		// qu'il y a au moins 1 minos place avant on va deplacer celui la;
 		else if (placed > 0 && tmp->prev)
 		{
-			printf("tmp->letter : %c, tmp->prev->letter : %c\n", tmp->letter, tmp->prev->letter); 
+//			printf("tmp->letter : %c, tmp->prev->letter : %c\n", tmp->letter, tmp->prev->letter); 
 			tmp = tmp->prev;
-			l = ft_find_l(tmp->letter, tab); //replacer l sur le 1er diese du minos place avant
-			c = ft_find_c(tmp->letter, tab); //replacer c ...
+			l = ft_find_l(tmp->letter, tab) ; //replacer l sur le 1er diese du minos place avant
+			c = ft_find_c(tmp->letter, tab) - tmp->pos[0].x; //replacer c ...
 			ft_del(tmp->letter, tab);
 //			printf("del de %c\n", tmp->letter);
 //			ft_display_tab(tab);
 			placed--;
-			printf("valeur de l : %i et valeur de c : %i\n", l, c);
+//			printf("valeur de l : %i et valeur de c : %i\n", l, c);
 			if (tab[l] && tab[l][c] != '\0')
 			{
 				c++;
-				printf("incremente c = %i\n", c);
+//				printf("incremente c = %i\n", c);
 			}
 			else if (tab[l + 1])
 				l++;
