@@ -6,17 +6,17 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 12:15:00 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/30 12:18:17 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/11 22:13:05 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-char **ft_create_tab(int size)
+char	**ft_create_tab(int size)
 {
-	int i;
-	char **tab;
-	char *s1;
+	int		i;
+	char	**tab;
+	char	*s1;
 
 	i = -1;
 	s1 = ft_strnew((int)size);

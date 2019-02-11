@@ -6,13 +6,13 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/09 17:22:56 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/09 17:29:53 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/11 22:13:44 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_find_l(char letter, char	**tab)
+int	ft_find_l(char letter, char **tab)
 {
 	int i;
 	int j;
