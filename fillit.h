@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/09 17:33:06 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/11 16:30:04 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #ifndef __FILLIT_H
@@ -74,7 +74,7 @@ char		ft_find_letter(t_triminos *list, int tri_placed);
 int			ft_place_bis(t_triminos *list, char **tab, int l, int c);
 
 
-char		**ft_scan(t_triminos *list, int size_tab);
+char		**ft_scan(t_triminos *list, int size_tab, char **tab);
 
 // SIMON UPDATE
 
@@ -85,5 +85,6 @@ char		ft_next_valid_letter(t_triminos *lst, char letter, char **tab);
 int			ft_shape(char l1, char l2, t_triminos *lst);
 int			ft_find_l(char letter, char **tab);
 int			ft_find_c(char letter, char **tab);
+void		ft_lst_free(t_triminos *list);
 
 #endif

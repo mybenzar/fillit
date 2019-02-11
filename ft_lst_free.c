@@ -1,13 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lst_swap.c                                      :+:      :+:    :+:   */
+/*   ft_lst_free.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/18 15:53:20 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 15:53:22 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/02/11 15:32:35 by struxill          #+#    #+#             */
+/*   Updated: 2019/02/11 15:40:55 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "fillit.h"
 
+void	ft_lst_free(t_triminos	*list)
+{
+	t_triminos	*tmp;
+
+	while (list->next)
+	{
+		tmp = list->next;
+		free(list);
+		list = tmp;
+	}
+	free(list);
+	list = NULL;
+}
