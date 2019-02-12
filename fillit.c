@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 19:16:03 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/12 19:05:04 by struxill         ###   ########.fr       */
+/*   Updated: 2019/02/12 19:31:19 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,10 @@ int	main(int ac, char **av)
 	int			size_tab;
 
 	if (ac != 2)
+	{
+		ft_putendl("usage: ./fillit input_file");
 		return (0);
+	}
 	if (!(tri_list = ft_check_and_convert(ft_read_input(av[1]))))
 	{
 		ft_putendl("error");
@@ -29,9 +32,8 @@ int	main(int ac, char **av)
 	tab = ft_create_tab(size_tab);
 	while (!ft_scan(tri_list, tab, 0, 0))
 	{
-		size_tab++;
 		ft_free_tab(tab);
-		tab = ft_create_tab(size_tab);
+		tab = ft_create_tab(++size_tab);
 	}
 	ft_display_tab(tab);
 	ft_lst_free(tri_list);
