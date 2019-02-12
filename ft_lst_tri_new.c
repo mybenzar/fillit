@@ -6,12 +6,11 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 17:28:33 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/11 22:15:57 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/12 18:20:54 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdlib.h>
 
 t_triminos	*ft_lst_tri_new(t_triminos tri)
 {
