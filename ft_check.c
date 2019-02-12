@@ -6,38 +6,39 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 16:11:59 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/11 22:11:47 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/12 17:45:52 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_check(char *str)
+void	ft_increment(char c, int *dot, int *diese, int *cr)
 {
-	int i;
-	int j;
-	int	diese_nb;
-	int dot_nb;
-	int cr_nb;
+	if (c == '.')
+		*dot = *dot + 1;
+	if (c == '#')
+		*diese = *diese + 1;
+	if (c == '\n')
+		*cr = *cr + 1;
+}
 
-	i = 0;
-	j = 0;
+int		ft_check_input(char *str, int i, int j)
+{
+	int	diese;
+	int dot;
+	int cr;
+
 	while (str)
 	{
-		diese_nb = 0;
-		dot_nb = 0;
-		cr_nb = 0;
+		diese = 0;
+		dot = 0;
+		cr = 0;
 		while (i < j + 20 && str[i])
 		{
-			if (str[i] == '.')
-				dot_nb++;
-			if (str[i] == '#')
-				diese_nb++;
-			if (str[i] == '\n')
-				cr_nb++;
+			ft_increment(str[i], &dot, &diese, &cr);
 			i++;
 		}
-		if (dot_nb != 12 || diese_nb != 4 || cr_nb != 4)
+		if (dot != 12 || diese != 4 || cr != 4)
 			return (0);
 		if (str[i] == '\0')
 			return (1);
@@ -48,4 +49,14 @@ int	ft_check(char *str)
 		j = i;
 	}
 	return (0);
+}
+
+int		ft_check(char *str)
+{
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	return (ft_check_input(str, i, j));
 }

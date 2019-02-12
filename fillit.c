@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 19:16:03 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/11 22:08:11 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/12 16:43:41 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,13 @@
 
 int	main(int ac, char **av)
 {
-	int			ret;
-	int			fd;
-	char		buf[BUFF_SIZE + 1];
 	char		**tab;
 	t_triminos	*tri_list;
 	int			size_tab;
 
 	if (ac != 2)
 		return (0);
-	fd = open(av[1], O_RDONLY);
-	ret = read(fd, buf, BUFF_SIZE);
-	buf[ret] = '\0';
-	if (!(tri_list = ft_check_and_convert(buf)))
+	if (!(tri_list = ft_check_and_convert(ft_read_input(av[1]))))
 	{
 		ft_putendl("error");
 		return (0);

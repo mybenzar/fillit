@@ -6,13 +6,13 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/11 22:31:08 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/02/12 17:56:46 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef __FILLIT_H
 # define __FILLIT_H
-# include "libft.h"
+# include "./Libft/libft.h"
 # define BUFF_SIZE 1048
 # include <unistd.h>
 # include <sys/types.h>
@@ -38,6 +38,7 @@ typedef struct	s_triminos
 /*
  ** parsing
 */
+char			*ft_read_input(char	*input);
 t_triminos		ft_tri_pos(t_list *list);
 t_triminos		ft_left(t_triminos tri);
 t_triminos		*ft_t_list_to_tri_list(t_list *list);

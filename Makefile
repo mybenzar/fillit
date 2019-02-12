@@ -1,16 +1,40 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: struxill <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/02/11 17:08:50 by struxill          #+#    #+#              #
+#    Updated: 2019/02/12 18:14:41 by struxill         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
+NAME	= fillit
+CC		= gcc
+CFLAGS	= -Wall -Wextra -Werror ## -L. -lft
+SOURCES = ft_place.c ft_list_size.c ft_check.c ft_convert_to_t_list.c ft_tri_pos.c		\
+		  ft_left.c ft_lst_tri_new.c ft_lst_tri_add.c ft_t_list_to_tri_list.c	\
+		  ft_display_tab.c ft_free_tab.c ft_check_and_convert.c ft_check_shape.c 			\
+		  ft_assign_letter.c ft_create_tab.c ft_del.c ft_optimal_size.c ft_shape.c			\
+		  ft_scan.c ft_find_l.c ft_find_c.c ft_lst_free.c fillit.c ft_read_input.c
+OBJECTS	= $(SOURCES:.c=.o)
+LIBPATH	= ./Libft/
 
-SOURCES = ft_place.c ft_list_size.c ft_check.c ft_convert_to_t_list.c ft_tri_pos.c ft_left.c ft_lst_tri_new.c \
-		  ft_lst_tri_add.c ft_t_list_to_tri_list.c ft_display_tab.c ft_free_tab.c 						\
-		  ft_check_and_convert.c ft_check_shape.c ft_assign_letter.c
+all : $(NAME)
 
-SRC_MYM	= ft_create_tab.c ft_del.c ft_optimal_size.c
+$(NAME): lib $(OBJECTS)
+	$(CC) $(CFLAGS) -L$(LIBPATH) -lft -o $(NAME) $(OBJECTS)
 
-SRC_SIM	= ft_shape.c
+lib:
+	cd $(LIBPATH) && (MAKE)
 
-SRC_NEW = ft_scan.c ft_find_l.c ft_find_c.c ft_lst_free.c
+clean:
+	rm -f $(OBJECTS)
+	$(MAKE) -C $(LIBPATH) clean
 
+fclean: clean
+	rm -f $(NAME)
+	cd $(LIBPATH) && rm -f libft.a
 
-
-all :
-	gcc -Wall -Werror -Wextra -std=c11 -ggdb3 fillit.c -L. -lft $(SOURCES) $(SRC_MYM) $(SRC_SIM) $(SRC_NEW) -o fillit
+re:	fclean all
