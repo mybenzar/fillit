@@ -6,7 +6,7 @@
 #    By: struxill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 21:48:46 by struxill          #+#    #+#              #
-#    Updated: 2019/02/12 18:58:09 by struxill         ###   ########.fr        #
+#    Updated: 2019/03/22 13:31:37 by struxill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,9 +41,6 @@ SOURCES	= $(SRC_STR) $(SRC_MEM) $(SRC_IS) $(SRC_COV) $(SRC_ADD) $(SRC_BON) $(SRC
 OBJECTS	= $(SOURCES:.c=.o)
 
 all: $(NAME)
-
-##%.o: %.c
-##	$(CC) $(CFLAGS) -c $< -c $@
 
 $(NAME): $(OBJECTS)
 	@echo "\033[92mGCC Compilation\033[0m"

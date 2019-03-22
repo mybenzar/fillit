@@ -6,7 +6,7 @@
 #    By: struxill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 17:08:50 by struxill          #+#    #+#              #
-#    Updated: 2019/02/12 19:08:34 by struxill         ###   ########.fr        #
+#    Updated: 2019/03/22 13:33:20 by struxill         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SOURCES = ft_place.c ft_list_size.c ft_check.c ft_convert_to_t_list.c ft_tri_pos
 		  ft_assign_letter.c ft_create_tab.c ft_del.c ft_optimal_size.c	ft_scan.c	\
 		  ft_find_l.c ft_find_c.c ft_lst_free.c fillit.c ft_read_input.c
 OBJECTS	= $(SOURCES:.c=.o)
-LIBPATH	= ./Libft/
+LIBPATH	= ./libft/
 
 all : $(NAME)
 
