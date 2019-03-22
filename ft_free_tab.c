@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 12:17:16 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/18 15:47:20 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/03/22 20:24:13 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,8 @@ void	ft_free_tab(char **tab)
 		tab[i] = NULL;
 		i++;
 	}
+	free(tab[i]);
+	tab[i] = NULL;
+	free(tab);
+	tab = NULL;
 }
