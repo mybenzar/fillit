@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 19:16:03 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/22 20:38:18 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/03/28 14:41:44 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,14 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	size_tab = ft_optimal_size(ft_list_size(tri_list));
-	tab = ft_create_tab(size_tab);
+	if (!(tab = ft_create_tab(size_tab)))
+		return (0);
+	if (DEBUG)
+		printf("is there a problem here\n");
 	while (!ft_scan(tri_list, tab, 0, 0))
 	{
+		if (DEBUG)
+			printf("boucle while du fillit.c\n");
 		ft_free_tab(tab);
 		tab = ft_create_tab(++size_tab);
 	}

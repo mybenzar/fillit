@@ -1,0 +1,113 @@
+==42659== Memcheck, a memory error detector
+==42659== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==42659== Using Valgrind-3.14.0 and LibVEX; rerun with -h for copyright info
+==42659== Command: ./fillit fillit_unit_test/correct_file/valid_18
+==42659== Parent PID: 42573
+==42659== 
+==42659== Invalid read of size 1
+==42659==    at 0x100000EE3: ft_strncpy (in ./fillit)
+==42659==    by 0x100001A1C: ft_tri_pos (ft_tri_pos.c:50)
+==42659==    by 0x100001D3E: ft_t_list_to_tri_list (ft_t_list_to_tri_list.c:19)
+==42659==    by 0x100002023: ft_check_and_convert (ft_check_and_convert.c:23)
+==42659==    by 0x100002DCC: main (fillit.c:26)
+==42659==  Address 0x100b611c3 is 0 bytes after a block of size 19 alloc'd
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x1000010D0: ft_lstnew (in ./fillit)
+==42659==    by 0x1000018B6: ft_convert_to_t_list (ft_convert_to_t_list.c:29)
+==42659==    by 0x100002016: ft_check_and_convert (ft_check_and_convert.c:22)
+==42659==    by 0x100002DCC: main (fillit.c:26)
+==42659== 
+==42659== Invalid read of size 1
+==42659==    at 0x100000EE3: ft_strncpy (in ./fillit)
+==42659==    by 0x100001A1C: ft_tri_pos (ft_tri_pos.c:50)
+==42659==    by 0x100001E08: ft_t_list_to_tri_list (ft_t_list_to_tri_list.c:22)
+==42659==    by 0x100002023: ft_check_and_convert (ft_check_and_convert.c:23)
+==42659==    by 0x100002DCC: main (fillit.c:26)
+==42659==  Address 0x100b61103 is 0 bytes after a block of size 19 alloc'd
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x1000010D0: ft_lstnew (in ./fillit)
+==42659==    by 0x1000018B6: ft_convert_to_t_list (ft_convert_to_t_list.c:29)
+==42659==    by 0x100002016: ft_check_and_convert (ft_check_and_convert.c:22)
+==42659==    by 0x100002DCC: main (fillit.c:26)
+==42659== 
+==42659== Invalid read of size 1
+==42659==    at 0x100001391: check_column (ft_place.c:49)
+==42659==    by 0x10000149C: ft_test (ft_place.c:67)
+==42659==    by 0x10000155A: ft_place (ft_place.c:85)
+==42659==    by 0x100002AB3: ft_scan (ft_scan.c:24)
+==42659==    by 0x100002E24: main (fillit.c:33)
+==42659==  Address 0x100b616ef is 1 bytes before a block of size 6 alloc'd
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x100000DFD: ft_strdup (in ./fillit)
+==42659==    by 0x100002766: ft_create_tab (ft_create_tab.c:30)
+==42659==    by 0x100002E0D: main (fillit.c:32)
+==42659== 
+==42659== Invalid read of size 1
+==42659==    at 0x10000124C: ft_find (ft_place.c:22)
+==42659==    by 0x100001545: ft_place (ft_place.c:84)
+==42659==    by 0x100002AB3: ft_scan (ft_scan.c:24)
+==42659==    by 0x100002E24: main (fillit.c:33)
+==42659==  Address 0x100b6164f is 1 bytes before a block of size 6 alloc'd
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x100000DFD: ft_strdup (in ./fillit)
+==42659==    by 0x100002766: ft_create_tab (ft_create_tab.c:30)
+==42659==    by 0x100002E0D: main (fillit.c:32)
+==42659== 
+==42659== Invalid read of size 1
+==42659==    at 0x100001270: ft_find (ft_place.c:22)
+==42659==    by 0x100001545: ft_place (ft_place.c:84)
+==42659==    by 0x100002AB3: ft_scan (ft_scan.c:24)
+==42659==    by 0x100002E24: main (fillit.c:33)
+==42659==  Address 0x100b6164f is 1 bytes before a block of size 6 alloc'd
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x100000DFD: ft_strdup (in ./fillit)
+==42659==    by 0x100002766: ft_create_tab (ft_create_tab.c:30)
+==42659==    by 0x100002E0D: main (fillit.c:32)
+==42659== 
+==42659== 
+==42659== HEAP SUMMARY:
+==42659==     in use at exit: 18,517 bytes in 176 blocks
+==42659==   total heap usage: 212 allocs, 36 frees, 25,168 bytes allocated
+==42659== 
+==42659== 48 bytes in 1 blocks are definitely lost in loss record 18 of 47
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x1000026EE: ft_create_tab (ft_create_tab.c:23)
+==42659==    by 0x100002E0D: main (fillit.c:32)
+==42659== 
+==42659== 56 bytes in 1 blocks are definitely lost in loss record 20 of 47
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x1000026EE: ft_create_tab (ft_create_tab.c:23)
+==42659==    by 0x100002E57: main (fillit.c:36)
+==42659== 
+==42659== 72 bytes in 3 blocks are possibly lost in loss record 28 of 47
+==42659==    at 0x10009DC8A: calloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x1005B7832: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==42659==    by 0x1005CAD6A: map_images (in /usr/lib/libobjc.A.dylib)
+==42659==    by 0x10000C03B: dyld::notifyBatchPartial(dyld_image_states, bool, char const* (*)(dyld_image_states, unsigned int, dyld_image_info const*), bool, bool) (in /usr/lib/dyld)
+==42659==    by 0x10000C255: dyld::registerObjCNotifiers(void (*)(unsigned int, char const* const*, mach_header const* const*), void (*)(char const*, mach_header const*), void (*)(char const*, mach_header const*)) (in /usr/lib/dyld)
+==42659==    by 0x10020500A: _dyld_objc_notify_register (in /usr/lib/system/libdyld.dylib)
+==42659==    by 0x1005B7072: _objc_init (in /usr/lib/libobjc.A.dylib)
+==42659==    by 0x10019868D: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==42659==    by 0x10019863A: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==42659==    by 0x1000AC9D5: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==42659==    by 0x10001CA1A: ImageLoaderMachO::doModInitFunctions(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==42659==    by 0x10001CC1D: ImageLoaderMachO::doInitialization(ImageLoader::LinkContext const&) (in /usr/lib/dyld)
+==42659== 
+==42659== 258 (24 direct, 234 indirect) bytes in 1 blocks are definitely lost in loss record 37 of 47
+==42659==    at 0x10009D626: malloc (in /Users/struxill/.brew/Cellar/valgrind/3.14.0/lib/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==42659==    by 0x10000107E: ft_lstnew (in ./fillit)
+==42659==    by 0x1000018B6: ft_convert_to_t_list (ft_convert_to_t_list.c:29)
+==42659==    by 0x100002016: ft_check_and_convert (ft_check_and_convert.c:22)
+==42659==    by 0x100002DCC: main (fillit.c:26)
+==42659== 
+==42659== LEAK SUMMARY:
+==42659==    definitely lost: 128 bytes in 3 blocks
+==42659==    indirectly lost: 234 bytes in 11 blocks
+==42659==      possibly lost: 72 bytes in 3 blocks
+==42659==    still reachable: 200 bytes in 6 blocks
+==42659==         suppressed: 17,883 bytes in 153 blocks
+==42659== Reachable blocks (those to which a pointer was found) are not shown.
+==42659== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==42659== 
+==42659== For counts of detected and suppressed errors, rerun with: -v
+==42659== ERROR SUMMARY: 65 errors from 9 contexts (suppressed: 12 from 12)

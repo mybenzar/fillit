@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/08 10:58:27 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/11 22:06:32 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/03/28 14:20:59 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@ int	ft_scan(t_triminos *list, char **tab, int l, int c)
 	placed = 0;
 	while (placed < ft_list_size(list))
 	{
+		if (DEBUG)
+			printf("rentre dans while ft_scan. List size = %i\n Placed = %i\n", 
+					ft_list_size(list), placed);
 		if (ft_place(tmp, tab, &l, &c))
 		{
 			placed++;

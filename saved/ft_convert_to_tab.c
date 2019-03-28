@@ -1,35 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstfree.c                                       :+:      :+:    :+:   */
+/*   ft_convert_to_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 18:28:03 by struxill          #+#    #+#             */
-/*   Updated: 2019/03/28 14:17:00 by struxill         ###   ########.fr       */
+/*   Created: 2019/03/28 11:24:33 by struxill          #+#    #+#             */
+/*   Updated: 2019/03/28 11:57:08 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "fillit.h"
 
-#include <stdio.h>
-
-void	ft_lstfree(t_list *lst)
+char	**ft_convert_to_tab(char *str)
 {
-	t_list	*tmp;
+	char	**tab;
+	int		i;
+	int		len;
+	int		start;
 
-	while (lst)
+	len = ft_strlen(str);
+	i = 0;
+	start = 0;
+	if (!(tab = (char**)malloc(sizeof(char*) * ((len + 1) / 21) + 1)))
+		return (NULL);
+	while ((i + 1) < (len + 1) / 21)
 	{
-		printf("lst pointe sur le maillon %zu\n", lst->content_size);
-		tmp = lst;
-		free(lst->content);
-		lst->content_size = 0;
-		lst = lst->next;
-		free(tmp);
-		if (lst)
-			printf("fin du while, lst content_size :  %zu\n", lst->content_size);
+		if (!(tab[i] = ft_strsub(str, start, 19)))
+			return (NULL);
+		i++;
+		start = start + 21;
 	}
-	printf("\nlstfree terminee\n");
-	lst = NULL;
+	tab[i] = 0;
+	return (tab);
 }

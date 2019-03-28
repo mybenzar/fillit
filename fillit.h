@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/22 13:32:56 by struxill         ###   ########.fr       */
+/*   Updated: 2019/03/28 14:03:51 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <stdlib.h>
+
+# define DEBUG 1
+# include <stdio.h>
 
 /*
  **	structures

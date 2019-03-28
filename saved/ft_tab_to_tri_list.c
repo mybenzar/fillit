@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstfree.c                                       :+:      :+:    :+:   */
+/*   ft_tab_to_tri_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/29 18:28:03 by struxill          #+#    #+#             */
-/*   Updated: 2019/03/28 14:17:00 by struxill         ###   ########.fr       */
+/*   Created: 2019/03/28 11:28:08 by struxill          #+#    #+#             */
+/*   Updated: 2019/03/28 11:57:06 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <stdlib.h>
+#include "fillit.h"
 
-#include <stdio.h>
-
-void	ft_lstfree(t_list *lst)
+t_triminos	*ft_tab_to_tri_list(char **tab)
 {
-	t_list	*tmp;
+	t_triminos	*start;
+	int			i;
 
-	while (lst)
+	i = 0;
+	start = ft_lst_tri_new(ft_left(ft_tri_pos(tab[i])));
+	i++;
+	while (tab[i])
 	{
-		printf("lst pointe sur le maillon %zu\n", lst->content_size);
-		tmp = lst;
-		free(lst->content);
-		lst->content_size = 0;
-		lst = lst->next;
-		free(tmp);
-		if (lst)
-			printf("fin du while, lst content_size :  %zu\n", lst->content_size);
+		ft_lst_tri_add(&start, ft_lst_tri_new(ft_left(ft_tri_pos(tab[i]))));
+		i++;
 	}
-	printf("\nlstfree terminee\n");
-	lst = NULL;
+	return (start);
 }
