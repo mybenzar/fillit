@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 15:09:53 by struxill          #+#    #+#             */
-/*   Updated: 2018/11/29 21:47:15 by struxill         ###   ########.fr       */
+/*   Updated: 2019/03/28 16:25:47 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char			*ft_itoa(int c);
 /*
  **BONUS LISTES
 */
-t_list			*ft_lstnew(void const *content, size_t content_size);
+t_list			*ft_lstnew(char *content, size_t content_size);
 void			ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
 void			ft_lstdel(t_list **alst, void(*del)(void *, size_t));
 void			ft_lstadd(t_list **alst, t_list *new);

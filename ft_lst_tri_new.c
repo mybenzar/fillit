@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/16 17:28:33 by struxill          #+#    #+#             */
-/*   Updated: 2019/02/12 18:20:54 by struxill         ###   ########.fr       */
+/*   Updated: 2019/03/28 17:53:34 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_triminos	*ft_lst_tri_new(t_triminos tri)
 	int			i;
 
 	i = 0;
-	if (!(start = (t_triminos*)malloc(sizeof(*start))))
+	if (!(start = (t_triminos*)malloc(sizeof(t_triminos))))
 		return (NULL);
 	while (i < 4)
 	{

@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 18:27:26 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/28 14:42:57 by struxill         ###   ########.fr       */
+/*   Updated: 2019/03/29 12:25:31 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_find(char **tab, int *l, int *c, int x_pos)
 
 	i = *l;
 	j = *c + x_pos;
+	if (DEBUG)
+		printf("before : j=%d, c=%d, x_pos=%d\n", j, *c, x_pos);
 	while (tab[i][j] != '.' && tab[i][j] && tab[i])
 	{
-		if (DEBUG)
-			printf("ft_find\n");
 		j++;
 		if (tab[i][j] == '\0')
 		{
@@ -34,7 +34,9 @@ void	ft_find(char **tab, int *l, int *c, int x_pos)
 		}
 	}
 	*l = i;
-	*c = j - x_pos;
+	(j - x_pos) < 0 ? (*c = 0) : (*c = j - x_pos);
+	if (DEBUG)
+		printf("after : j=%d, c=%d, x_pos=%d\n", j, *c, x_pos);
 }
 
 int		check_column(t_triminos *list, char **tab, int *l, int *c)
@@ -46,12 +48,6 @@ int		check_column(t_triminos *list, char **tab, int *l, int *c)
 	i = 0;
 	while (i <= 3)
 	{
-		if (DEBUG)
-		{
-			printf("check_column, letter : %c\n", list->letter);
-			printf("address de l : %p, address de c : %p\n", &l, &c);
-	//		ft_display_tab(tab);
-		}
 		j = *c + list->pos[i].x;
 		k = *l + list->pos[i].y;
 		if (tab[k] && tab[k][j] && tab[k][j] != '\0' && tab[k][j] != '\n')
@@ -74,8 +70,6 @@ int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 {
 	while (!check_column(list, tab, l, c))
 	{
-		if (DEBUG)
-			printf("ft_test \n");
 		if (!tab[*l + 1])
 			return (0);
 		*l = *l + 1;
@@ -96,8 +90,6 @@ int		ft_place(t_triminos *list, char **tab, int *l, int *c)
 	{
 		while (++i <= 3)
 		{
-			if (DEBUG)
-				printf("ft place");
 			j = *c + list->pos[i].x;
 			k = *l + list->pos[i].y;
 			tab[k][j] = list->letter;

@@ -6,29 +6,22 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/18 12:17:16 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/28 14:13:50 by struxill         ###   ########.fr       */
+/*   Updated: 2019/03/29 12:50:06 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_free_tab(char **tab)
+void	ft_free_tab(char **tab, int size)
 {
 	int i;
 
 	i = 0;
-	while (tab[i])
+	while (i <= size)
 	{
-		if (DEBUG)
-			printf("while du ft_free_tab, i = %i\n", i);
-		if (!tab[i])
-			return ;
 		free(tab[i]);
 		tab[i] = NULL;
 		i++;
 	}
-	free(tab[i]);
-	tab[i] = NULL;
 	free(tab);
-	tab = NULL;
 }
