@@ -6,13 +6,13 @@
 #    By: struxill <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/11 17:08:50 by struxill          #+#    #+#              #
-#    Updated: 2019/03/29 12:36:10 by mybenzar         ###   ########.fr        #
+#    Updated: 2019/03/30 11:13:18 by mybenzar         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	= fillit
-CC		= gcc -g3 -fsanitize=address 
-CFLAGS	= #-Wall -Wextra -Werror
+CC		= gcc -g3 #-fsanitize=address 
+CFLAGS	= -Wall -Wextra -Werror
 SOURCES = ft_place.c ft_list_size.c ft_check.c ft_convert_to_t_list.c ft_tri_pos.c	\
 		  ft_left.c ft_lst_tri_new.c ft_lst_tri_add.c ft_t_list_to_tri_list.c		\
 		  ft_display_tab.c ft_free_tab.c ft_check_and_convert.c ft_check_shape.c 	\

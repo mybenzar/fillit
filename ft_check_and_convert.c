@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/17 15:49:06 by struxill          #+#    #+#             */
-/*   Updated: 2019/03/28 18:45:23 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/03/30 11:46:45 by mybenzar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ t_triminos	*ft_check_and_convert(char *str)
 	if (ft_check(str))
 	{
 		tmp_list = ft_convert_to_t_list(str);
-		if (DEBUG)
-			ft_lst_aff(tmp_list);
 		if (!(tri_list = ft_t_list_to_tri_list(tmp_list)))
 			return (NULL);
 		ft_lstfree(tmp_list);
+		tmp_list = NULL;
 		if (ft_check_shape(tri_list))
 		{
 			ft_assign_letter(tri_list);
