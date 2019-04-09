@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:59:41 by struxill          #+#    #+#             */
-/*   Updated: 2019/03/29 12:49:39 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:26:56 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,10 @@ t_triminos		ft_tri_pos(t_list *list)
 	int			nb;
 	int			i;
 	int			j;
-//	char		tmpstr[20];
 
 	nb = 0;
 	i = 0;
 	j = 0;
-//	ft_strncpy(tmpstr, list->content, 19);
 	minos = ft_assign_values(list->content, nb, i, j);
 	return (minos);
 }

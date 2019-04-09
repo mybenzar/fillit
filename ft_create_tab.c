@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/30 12:15:00 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/29 12:04:24 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:23:58 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	**ft_create_tab(int size)
 {
 	int		i;
 	char	**tab;
-	char 	*s1;
+	char	*s1;
 
 	i = 0;
 	if (!(tab = (char**)malloc(sizeof(char*) * (size + 1))))

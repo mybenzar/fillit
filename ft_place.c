@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 18:27:26 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/29 12:25:31 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:26:18 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ void	ft_find(char **tab, int *l, int *c, int x_pos)
 
 	i = *l;
 	j = *c + x_pos;
-	if (DEBUG)
-		printf("before : j=%d, c=%d, x_pos=%d\n", j, *c, x_pos);
 	while (tab[i][j] != '.' && tab[i][j] && tab[i])
 	{
 		j++;
@@ -34,9 +32,10 @@ void	ft_find(char **tab, int *l, int *c, int x_pos)
 		}
 	}
 	*l = i;
-	(j - x_pos) < 0 ? (*c = 0) : (*c = j - x_pos);
-	if (DEBUG)
-		printf("after : j=%d, c=%d, x_pos=%d\n", j, *c, x_pos);
+	if ((j - x_pos) < 0)
+		*c = 0;
+	else
+		*c = j - x_pos;
 }
 
 int		check_column(t_triminos *list, char **tab, int *l, int *c)

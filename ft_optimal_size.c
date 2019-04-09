@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/01 17:26:16 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/02/08 14:28:23 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:42:02 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_optimal_size(int nb)
 	i = 1;
 	square = 1;
 	if (nb <= 3)
-		return (3);
+		return (2);
 	while (square != nb)
 	{
 		i++;

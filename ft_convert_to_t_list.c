@@ -6,7 +6,7 @@
 /*   By: struxill <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/07 17:52:18 by struxill          #+#    #+#             */
-/*   Updated: 2019/03/30 12:04:46 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/04/09 14:24:24 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 t_list	*ft_convert_to_t_list(char *str)
 {
 	t_list	*start;
-	t_list  *tmp;
+	t_list	*tmp;
 	size_t	i;
 	char	*tmp_str;
-	int 	gap;
+	int		gap;
 
 	i = 1;
 	gap = 21;
