@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/02/11 19:16:03 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/03/30 12:04:47 by mybenzar         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:56:09 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 	tab = ft_create_tab(size_tab);
 	while (!ft_scan(tri_list, tab, 0, 0))
 	{
+		ft_display_tri_lst(tri_list);
 		ft_free_tab(tab, size_tab);
 		tab = ft_create_tab(++size_tab);
 	}

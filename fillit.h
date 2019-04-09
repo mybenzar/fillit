@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/13 15:15:54 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/04/09 14:44:21 by struxill         ###   ########.fr       */
+/*   Updated: 2019/04/09 18:54:07 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,10 @@ void			ft_find_and_del(t_triminos *list, char **tab, int *l, int *c);
 int				ft_scan(t_triminos *list, char **tab, int l, int c);
 int				ft_find_l(char letter, char **tab);
 int				ft_find_c(char letter, char **tab);
+
+
+
+void			ft_display(t_triminos tri);
+void			ft_display_tri_lst(t_triminos *tri_list);
 
 #endif
