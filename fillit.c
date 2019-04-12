@@ -32,6 +32,7 @@ int	main(int ac, char **av)
 	tab = ft_create_tab(size_tab);
 	while (!ft_scan(tri_list, tab, 0, 0))
 	{
+		printf("affichage de la liste avant agrandissement\n");
 		ft_display_tri_lst(tri_list);
 		ft_free_tab(tab, size_tab);
 		tab = ft_create_tab(++size_tab);
