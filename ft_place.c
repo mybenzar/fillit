@@ -6,7 +6,7 @@
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/22 18:27:26 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/04/09 14:26:18 by struxill         ###   ########.fr       */
+/*   Updated: 2019/04/22 15:36:58 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,6 @@ void	ft_find(char **tab, int *l, int *c, int x_pos)
 		}
 	}
 	*l = i;
-	if ((j - x_pos) < 0)
-		*c = 0;
-	else
-		*c = j - x_pos;
 }
 
 int		check_column(t_triminos *list, char **tab, int *l, int *c)
@@ -45,8 +41,6 @@ int		check_column(t_triminos *list, char **tab, int *l, int *c)
 	int k;
 
 	i = 0;
-	printf("check_column du triminos \n");
-	ft_display(*list);
 	while (i <= 3)
 	{
 		j = *c + list->pos[i].x;
@@ -62,14 +56,8 @@ int		check_column(t_triminos *list, char **tab, int *l, int *c)
 			}
 		}
 		else
-		{
-			printf("check_column 0 pour k = %i et j = %i\nAffichage du tableau :\n", k, j);
-			ft_display_tab(tab);
 			return (0);
-		}
 	}
-	printf("check_column 1 pour k = %i et j = %i\n", k, j);
-	ft_display_tab(tab);
 	return (1);
 }
 
