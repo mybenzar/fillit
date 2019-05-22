@@ -13,7 +13,7 @@ Run make, an executable called fillit should compile directly. Please submit an 
 
 <~ ./fillit samples/test_8
 
-.AABB..
+.AABB..\n
 AACCB..
 .CC.BDD
 .EE.DD.
