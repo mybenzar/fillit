@@ -9,16 +9,4 @@ Run make, an executable called fillit should compile directly. Please submit an 
 # Usage
 ./fillit [file]
 
-# Example:
-
-<~ ./fillit samples/test_8
-
-.AABB..\n
-AACCB..
-.CC.BDD
-.EE.DD.
-EEFFGG.
-.FFGGHH
-....HH.>
-
 Look at fillit.en.pdf for more information about the project.
