@@ -5,110 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mybenzar <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/12/13 16:30:29 by mybenzar          #+#    #+#             */
-/*   Updated: 2019/01/16 19:23:45 by mybenzar         ###   ########.fr       */
+/*   Created: 2019/03/22 18:27:26 by mybenzar          #+#    #+#             */
+/*   Updated: 2019/04/22 22:21:42 by struxill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-// recoder realloc car elle n'est pas autorisee
-
-char	**ft_create_tab(char **tab, int col, int line)
+void	ft_find(char **tab, int *l, int *c, int x_pos)
 {
 	int i;
 	int j;
 
-	i = 1;
-	j = 0;
-	if (!(tab = (char**)malloc(sizeof(char*) * col)))
-		return (NULL);
-	while (i <= 4)
+	i = *l;
+	j = *c + x_pos;
+	while (tab[i][j] != '.' && tab[i][j] && tab[i])
 	{
-		if (!(tab[i++] = (char*)malloc(sizeof(char) * (col + 1))))
-			return (NULL);
-		while (tab[i][j])
-			tab[i][j++] = '.';
-		tab[i][j] = '\n';
+		j++;
+		if (tab[i][j] == '\0')
+		{
+			j = 0;
+			*c = 0;
+			if (tab[i + 1])
+				i++;
+			else
+				return ;
+		}
 	}
-	return (tab);
+	*l = i;
 }
 
-int		ft_place(t_list *list, char **tab, int l, int c)
+int		check_column(t_triminos *list, char **tab, int *l, int *c)
 {
-	char		letter;
-	int			i;
-	int			j;
-	int			k;
-	
-	letter = 65;
-	i = -1;
-/* mettre dans ft_browse et envoyer l et c?
-**	while (tab[l][c] != '.' && tab[l][c] && tab[l])
-**	{		
-**		c++;
-**		if (!tab[l][c])
-**			l++;
-**	}
-*/
-	while (++i <= 3)
+	int i;
+	int j;
+	int k;
+
+	i = 0;
+	while (i <= 3)
 	{
-		j = c + list.content.pos[i].x;
-		k = l + list.content.pos[i].y;
-		if (tab[k][j] == '.' && tab[k][j])
-			tab[k][j] = letter;
-		else if (!tab[k][j])
-			ft_place(list, tab, l++, 0);
-		else if (!tab[k])
-			ft_place(list, tab, 0; c++);
+		j = *c + list->pos[i].x;
+		k = *l + list->pos[i].y;
+		if (tab[k] && tab[k][j] && tab[k][j] != '\0' && tab[k][j] != '\n')
+		{
+			if (tab[k][j] == '.')
+				i++;
+			if (tab[k][j] >= 'A' && tab[k][j] <= 'Z')
+			{
+				i = 0;
+				*c = *c + 1;
+			}
+		}
 		else
-			return (0)
+			return (0);
 	}
-	letter++;
 	return (1);
 }
 
-void	ft_browse(char **tab, t_list **list)
+int		ft_test(t_triminos *list, char **tab, int *l, int *c)
 {
-	t_list	*tmp;
-	int		col;
-	int		line;
-	int		nb_minos;
-	int		max_col;
-	int		max_line;
-
-	col = 0;
-	line = 0;
-	tmp = *list;
-	nb_minos = ft_list_size(*list);
-	while (tmp->next)
+	while (!check_column(list, tab, l, c))
 	{
-		
+		if (!tab[*l + 1])
+			return (0);
+		*l = *l + 1;
+		*c = 0;
 	}
+	return (1);
+}
 
+int		ft_place(t_triminos *list, char **tab, int *l, int *c)
+{
+	int i;
+	int j;
+	int k;
 
-	while (--nb_minos)
+	i = -1;
+	ft_find(tab, l, c, list->pos[0].x);
+	if (ft_test(list, tab, l, c))
 	{
-		if (tab[line][col] == '.')
+		while (++i <= 3)
 		{
-			while (ft_place(tmp, &col, &line))
-				tmp = tmp->next;
-			while (!ft_place(tmp, &col, &line) && ((col + 1) % 4 != 0) && col <= max_col && line <= max_line)
-			{
-				if ((col + 1) % 4 != 0)
-				{
-					col++;
-					ft_place(tmp, &col, &line);
-				}
-				else if ((col + 1) % 4 == 0)
-				{
-					line++;
-					ft_place(tmp, &col, &line);
-				}
-				//n'arrive pas a le placer nulle part, donc doit passer a un autre minos
-			}
-			//a essaye tous les minos mais aucune combinaison ne marche : free le tableau, l'agrandir et reessayer
-			if (col == max_col && line == max_line)
+			j = *c + list->pos[i].x;
+			k = *l + list->pos[i].y;
+			tab[k][j] = list->letter;
 		}
+		*l = 0;
+		*c = 0;
+		return (1);
 	}
+	return (0);
 }
